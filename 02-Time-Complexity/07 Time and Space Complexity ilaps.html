@@ -1,0 +1,309 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Time/Space Complexity</h1><div class="prose max-w-none">
+<!-- PrismJS for Syntax Highlighting -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+<style>
+  .wp_blog_theme {
+    --primary: #e67e22;
+    --secondary: #f8c291;
+    --light-bg: #fefcf9;
+    --text-dark: #2c3e50;
+    --tab-radius: 16px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    --code-bg: #1e272e;
+    --code-text: #d4f1ff;
+  }
+
+  .wp_blog_container {
+    font-family: "Segoe UI", sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    padding: 0 1rem 4rem;
+  }
+
+  .wp_blog_main-heading {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-top: 3rem;
+    font-weight: 700;
+  }
+
+  .wp_blog_explanation {
+    max-width: 1020px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: var(--tab-radius);
+    box-shadow: var(--shadow);
+  }
+
+  .wp_blog_explanation h2 {
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin: 2rem 0 0.75rem;
+    border-bottom: 2px solid #fae5d3;
+    padding-bottom: 0.5rem;
+  }
+
+  .wp_blog_explanation p,
+  .wp_blog_explanation li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0.5rem 0;
+  }
+
+  .wp_blog_explanation p code,
+  .wp_blog_explanation li code {
+    background: #fef9f4;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    color: #2c3e50;
+    font-size: 0.95rem;
+  }
+
+  .wp_blog_explanation pre {
+    background: var(--code-bg);
+    padding: 1.25rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .wp_blog_explanation pre code {
+    display: block;
+    background: transparent;
+    padding: 0;
+    color: var(--code-text);
+  }
+
+  .wp_blog_explanation img {
+    max-width: 100%;
+    border-radius: var(--tab-radius);
+    margin-top: 1rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  }
+
+  .wp_blog_explanation ul {
+    padding-left: 1.5rem;
+  }
+
+  .wp_blog_explanation h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .search-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .comparison-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+  }
+
+  .comparison-card.linear {
+    background: #fff8ec;
+  }
+
+  .comparison-card.binary {
+    background: #ecfaff;
+  }
+
+  .comparison-card h3 {
+    margin-bottom: 1rem;
+  }
+</style>
+
+
+
+<div class="wp_blog_container wp_blog_theme">
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<h1 class="wp_blog_main-heading"></h1>
+
+<div class="wp_blog_explanation">
+  <h2>What is Time Complexity?</h2>
+  <p>Time complexity measures how efficient an algorithm is as the input size increases. It’s not the same as the actual time taken to run a program.</p>
+  <p><code>Time Complexity != Execution Time</code></p>
+
+  <h2>Linear vs Binary Search</h2>
+
+  <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
+    <div style="flex: 1 1 420px; background: #fff8ec; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+      <h3 style="color: #d35400; margin-bottom: 0.75rem;">Linear Search</h3>
+      <ul>
+        <li><strong>Best Case:</strong> Element at 1st index → 1 operation</li>
+        <li><strong>Average Case:</strong> Element at n/2 index → n/2 operations</li>
+        <li><strong>Worst Case:</strong> Element not found → n operations</li>
+        <li><strong>Time Complexity:</strong> O(n)</li>
+        <li><strong>Requirement:</strong> Can work on unsorted arrays</li>
+      </ul>
+      <img decoding="async" src="https://namastedev.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-17-at-3.50.59%E2%80%AFPM.png" alt="Linear Search Graph">
+    </div>
+    <div style="flex: 1 1 420px; background: #ecfaff; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+      <h3 style="color: #2980b9; margin-bottom: 0.75rem;">Binary Search</h3>
+      <ul>
+        <li><strong>Best Case:</strong> Middle element matched → 1 operation</li>
+        <li><strong>Average Case:</strong> log₂(n) operations</li>
+        <li><strong>Worst Case:</strong> log₂(n) operations</li>
+        <li><strong>Time Complexity:</strong> O(log n)</li>
+        <li><strong>Requirement:</strong> Only works on sorted arrays</li>
+      </ul>
+      <img decoding="async" src="https://namastedev.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-17-at-3.51.05%E2%80%AFPM.png" alt="Binary Search Graph">
+    </div>
+  </div>
+
+  <p>
+    When we use <code>Linear Search</code> for an input size of 100, it runs 100 times, whereas <code>Binary Search</code> takes only 7 steps. This shows that Binary Search is more efficient.
+    As the input size (n) increases, the way an algorithm behaves helps us understand how efficient it is.
+    Also, the graph helps us understand that Binary Search is more efficient.
+  </p>
+
+  <h2>Big O Notation</h2>
+  <p>It is nothing; just a symbol used to represent the worst-case complexity.</p>
+
+  <h2>Code Examples of Time Complexity</h2>
+
+  <p><code>O(1)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+// Accessing 5th index element
+int value = arr[5];
+</code></pre>
+  <p>The time complexity is O(1) because we directly access the 5th index without any iteration.</p>
+
+  <p><code>O(n)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+for(int i = 0; i &lt; n; i++) {
+    // do something
+}
+</code></pre>
+
+  <p><code>O(log n)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+// e.g., Binary Search
+int binarySearch(int arr[], int n, int key) {
+    int low = 0, high = n - 1;
+    while(low &lt;= high) {
+        int mid = (low + high) / 2;
+        if(arr[mid] == key) return mid;
+        else if(arr[mid] &lt; key) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
+
+  <p><code>O(n^2)</code> – Nested Loop</p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+for(int i = 0; i &lt; n; i++) {
+    for(int j = 0; j &lt; n; j++) {
+        // do something
+    }
+}
+</code></pre>
+
+  <p><code>O(n log n)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+for(int i = 0; i &lt; n; i++) {
+    int temp = n;
+    while(temp &gt; 1) {
+        temp = temp / 2;
+        // do something
+    }
+}
+</code></pre>
+
+  <p><code>O(n^3)</code> – Triple Nested Loops</p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+for(int i = 0; i &lt; n; i++) {
+    for(int j = 0; j &lt; n; j++) {
+        for(int k = 0; k &lt; n; k++) {
+            // do something
+        }
+    }
+}
+</code></pre>
+
+  <p><code>O(2^n)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+// Recursive Fibonacci
+int fib(int n) {
+    if(n &lt;= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+</code></pre>
+
+  <p><code>O(n!)</code></p>
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+// Permutation generator
+void permute(string s, int l, int r) {
+    if(l == r) {
+        cout &lt;&lt; s &lt;&lt; endl;
+    } else {
+        for(int i = l; i &lt;= r; i++) {
+            swap(s[l], s[i]);
+            permute(s, l + 1, r);
+            swap(s[l], s[i]); // backtrack
+        }
+    }
+}
+</code></pre>
+
+  <h2>Time Complexity Priorities</h2>
+  <ul>
+    <li><code>O(1)</code> – Constant time</li>
+    <li><code>O(log n)</code> – e.g., Binary Search</li>
+    <li><code>O(n)</code> – e.g., Linear Search</li>
+    <li><code>O(n log n)</code> – e.g., Merge Sort</li>
+    <li><code>O(n^2)</code> – e.g., Nested Loops</li>
+    <li><code>O(n^3)</code> – e.g., Triple Nested Loops</li>
+    <li><code>O(2^n)</code> – Recursion (e.g., Fibonacci)</li>
+    <li><code>O(n!)</code> – e.g., Brute-force permutations</li>
+  </ul>
+
+  <img decoding="async" src="https://namastedev.com/blog/wp-content/uploads/2025/07/Screenshot-2025-07-25-at-10.31.42 AM.png" alt="Time Complexity Full Comparison Graph">
+
+  <h2>What is Space Complexity?</h2>
+  <p>Space complexity refers to how much extra memory an algorithm uses.</p>
+
+  <h3>Examples:</h3>
+  <ul>
+    <li>Access 5th element: <code>O(1)</code></li>
+    <li>Find max with variable: <code>O(1)</code></li>
+    <li>New array: <code>O(n)</code></li>
+    <li>2D Matrix: <code>O(n^2)</code></li>
+  </ul>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+    const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        contents.forEach((content) => content.classList.remove("active"));
+        button.classList.add("active");
+        document.querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`).classList.add("active");
+      });
+    });
+  });
+</script>
+
+
+
+<p></p>
+</div></div></div>
