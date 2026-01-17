@@ -1,0 +1,301 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Reverse String</h1><div class="prose max-w-none">
+
+
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style> 
+.wp_blog_theme {
+  --primary: #E58C32;
+  --secondary: #f8c291;
+  --light-bg: #fef9f4;
+  --text-dark: #2d2d2d;
+  --tab-radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --code-bg: #001f3f;
+  --code-text: #d4f1ff;
+}
+
+.wp_blog_container {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+/* Heading */
+.wp_blog_main-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-top: 2.5rem;
+  font-weight: bold;
+}
+
+/* Explanation Card */
+.wp_blog_explanation,
+.wp_blog_code-tabs-container {
+  max-width: 940px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--tab-radius);
+  box-shadow: var(--shadow);
+}
+
+/* Text and Visuals */
+.wp_blog_explanation h2{
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.wp_blog_explanation h5{
+  color: var(--primary);
+}
+
+.wp_blog_explanation p,
+.wp_blog_explanation li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+}
+.wp_blog_explanation code {
+  background: #f9cea6;
+  color: #2d2d2d;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+.wp_blog_explanation img {
+  max-width: 100%;
+  border-radius: var(--tab-radius);
+  margin-top: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* Tab Buttons */
+.wp_blog_code-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.wp_blog_code-tab-button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.wp_blog_code-tab-button:hover {
+  background: var(--secondary);
+}
+.wp_blog_code-tab-button.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Code Content */
+.wp_blog_code-tab-content {
+  display: none;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+}
+.wp_blog_code-tab-content.active {
+  display: block;
+}
+.wp_blog_code-tab-content pre {
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+  color: var(--code-text);
+}
+</style>
+
+<div class="wp_blog_container wp_blog_theme"> 
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+    <h1 class="wp_blog_main-heading"></h1>
+    <div class="wp_blog_explanation">
+        <h2>Problem Statement:</h2>
+
+        <p>Write a function that reverses a string. The input string is given as an array of characters <code>s</code>. You must do this by modifying the input array in-place with <code>O(1)</code>extra memory.</p>
+
+                <h2>Examples:</h2>
+
+                <h5>Example 1:</h5>
+                <p><strong>Input:</strong>s = [“h”,”e”,”l”,”l”,”o”]</p>
+                <p><strong>Output:</strong>[“o”,”l”,”l”,”e”,”h”]</p>
+
+                <h5>Example 2:</h5>
+                <p><strong>Input:</strong>s = [“H”,”a”,”n”,”n”,”a”,”h”]</p>
+                <p><strong>Output:</strong>[“h”,”a”,”n”,”n”,”a”,”H”]</p>
+                <h2>Approach: Two Pointer Technique</h2>
+                <ul>
+                    <li>Initialize two pointers, one at the start and one at the end of the array.</li>
+                    <li>Swap the characters at both pointers.</li>
+                    <li>Move the pointers towards the center until they meet.</li>
+                </ul>
+
+                <h2>Time Complexity:</h2>
+                <li>
+                  <p><strong>Time Complexity = O(n)</strong>
+                </p></li>
+                <h2>Space Complexity:</h2>
+                <li>
+                  <p><strong>Space Complexity = O(1)</strong></p>
+                </li>
+
+                <h2>Dry Run</h2>
+                  <div style="background: #f9f9f9; border-left: 4px solid var(--primary); padding: 1rem; border-radius: var(--tab-radius); margin: 1rem 0;">
+                  <p><strong>Input:</strong> <code>s = ["h", "e", "l", "l", "o"]</code></p>
+                  <pre style="white-space: pre-wrap; background: #fff5ea; padding: 1rem; border-radius: 8px; overflow-x: auto;">    len = 5, halfLen = 2
+                    
+    i = 0 → swap s[0] and s[4] → ["o", "e", "l", "l", "h"]
+    i = 1 → swap s[1] and s[3] → ["o", "l", "l", "e", "h"]
+                      </pre>
+                <p><strong>Output:</strong> <code>Result: ["o", "l", "l", "e", "h"]</code></p>
+                  </div>
+                
+        <h2>Visualisation:</h2>
+        <img decoding="async" src="https://namastedev.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-26-at-8.19.31 PM.png" alt="Reverse String">
+    </div>
+
+    <div class="wp_blog_code-tabs-container">
+        <div class="wp_blog_code-tabs-header">
+            <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+            <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+            <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+            <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+            <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+            <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="wp_blog_code-tab-content" data-lang="js">
+            <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">reverseString</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> len <span class="token operator">=</span> s<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> halfLen <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>len <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> halfLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> temp <span class="token operator">=</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span>len <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        s<span class="token punctuation">[</span>len <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+         </code></pre>
+        </div>
+
+        <!-- Python -->
+        <div class="wp_blog_code-tab-content" data-lang="py">
+            <pre class="language-python" tabindex="0"><code class="language-python">
+class Solution(object):
+    def reverseString(self, s):
+        left, right = 0, len(s) - 1
+        while left &lt; right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+            </code></pre>
+        </div>
+
+        <!-- Java -->
+        <div class="wp_blog_code-tab-content" data-lang="java">
+            <pre class="language-java" tabindex="0"><code class="language-java">
+public class Solution {
+    public void reverseString(char[] s) {
+        int left = 0, right = s.length - 1;
+        while (left &lt; right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}           </code></pre>
+        </div>
+
+        <!-- C++ -->
+        <div class="wp_blog_code-tab-content active" data-lang="cpp">
+            <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+class Solution {
+public:
+    void reverseString(vector&amp; s) {
+        int left = 0, right = s.size() - 1;
+        while (left &lt; right) {
+            swap(s[left], s[right]);
+            left++;
+            right--;
+        }
+    }
+};     </code></pre>
+        </div>
+
+        <!-- C -->
+        <div class="wp_blog_code-tab-content" data-lang="c">
+            <pre class="language-c" tabindex="0"><code class="language-c">
+void reverseString(char* s, int sSize) {
+    int left = 0, right = sSize - 1;
+    while (left &lt; right) {
+        char temp = s[left];
+        s[left] = s[right];
+        s[right] = temp;
+        left++;
+        right--;
+    }
+}
+            </code></pre>
+        </div>
+
+        <!-- C# -->
+        <div class="wp_blog_code-tab-content" data-lang="cs">
+            <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+public class Solution {
+    public void ReverseString(char[] s) {
+        int left = 0, right = s.Length - 1;
+        while (left &lt; right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}          </code></pre>
+        </div>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+
+                button.classList.add("active");
+                document
+                    .querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`)
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+</div></div></div>
