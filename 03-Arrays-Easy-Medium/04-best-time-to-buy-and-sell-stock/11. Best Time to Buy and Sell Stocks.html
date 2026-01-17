@@ -1,0 +1,356 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Best Time to Buy and Sell Stocks</h1><div class="prose max-w-none">
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style> 
+.wp_blog_theme {
+  --primary: #E58C32;
+  --secondary: #f8c291;
+  --light-bg: #fef9f4;
+  --text-dark: #2d2d2d;
+  --tab-radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --code-bg: #001f3f;
+  --code-text: #d4f1ff;
+}
+
+.wp_blog_container {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+/* Heading */
+.wp_blog_main-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-top: 2.5rem;
+  font-weight: bold;
+}
+
+/* Explanation Card */
+.wp_blog_explanation,
+.wp_blog_code-tabs-container {
+  max-width: 940px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--tab-radius);
+  box-shadow: var(--shadow);
+}
+
+/* Text and Visuals */
+.wp_blog_explanation h2{
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.wp_blog_explanation h5{
+  color: var(--primary);
+}
+
+.wp_blog_explanation p,
+.wp_blog_explanation li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+}
+.wp_blog_explanation code {
+  background: #f9cea6;
+  color: #2d2d2d;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+.wp_blog_explanation img {
+  max-width: 100%;
+  border-radius: var(--tab-radius);
+  margin-top: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* Tab Buttons */
+.wp_blog_code-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.wp_blog_code-tab-button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.wp_blog_code-tab-button:hover {
+  background: var(--secondary);
+}
+.wp_blog_code-tab-button.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Code Content */
+.wp_blog_code-tab-content {
+  display: none;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+}
+.wp_blog_code-tab-content.active {
+  display: block;
+}
+.wp_blog_code-tab-content pre {
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+  color: var(--code-text);
+}
+</style>
+
+<div class="wp_blog_container wp_blog_theme"> 
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+    <h1 class="wp_blog_main-heading"></h1>
+    <div class="wp_blog_explanation">
+        <h2>Problem Statement:</h2>
+
+        <p>You are given an array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the ith day.
+
+        You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+        </p>
+        <p>
+            Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return <code>0</code>.
+        </p>
+
+                <h2>Examples:</h2>
+
+                <h5>Example 1:</h5>
+                <p><strong>Input:</strong>prices = [7, 1, 5, 3, 6, 4]</p>
+                <p><strong>Output:</strong>5</p>
+                <p>
+                  <code>Explanation:</code>
+                  Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6 – 1 = 5.
+                </p>
+
+                <h5>Example 2:</h5>
+                <p><strong>Input:</strong>prices = [7,6,4,3,1]</p>
+                <p><strong>Output:</strong>0</p>
+                  <p>
+                  <code>Explanation:</code>
+                  Explanation: In this case, no transactions are done and the max profit = 0.
+                </p>
+
+                    <h2>Constraints:</h2>
+                    <ul>
+                      <li>1 &lt;= prices.length &lt;= 10<sup>5</sup></li>
+                      <li>0 &lt;= prices[i] &lt;= 10<sup>4</sup></li>
+                    </ul>
+
+                <h2>Approach: Brute Force</h2>
+                <ul>
+                    <li>Initialize <code>maxProfit = 0</code>.</li>
+                    <li>Use two nested loops.</li>
+                    <li>Outer loop picks a day <code>i</code>to buy the stock.</li>
+                    <li>Inner loop picks a day <code>j &gt; i</code> to sell the stock.</li>
+                    <li>For every pair <code>(i, j)</code>, calculate the profit: <code>prices[j] - prices[i]</code>.</li>
+                    <li>If this profit is greater than <code>maxProfit</code>, update <code>maxProfit</code>.</li>
+                </ul>
+
+                <h2>Time Complexity:</h2>
+                <li>
+                  <p><strong>Time Complexity = O(n<sup>2</sup>)</strong>
+                Two nested loops. For every element i, check all j &gt; i. Total comparisons = n(n-1)/2 → O(n²)
+                  </p></li>
+                <h2>Space Complexity:</h2>
+                <li>
+                  <p><strong>Space Complexity = O(1)</strong>
+                  No extra data structures used. Only uses a variable maxProfit.</p>
+                </li>
+
+                <h2>Dry Run</h2>
+                  <div style="background: #f9f9f9; border-left: 4px solid var(--primary); padding: 1rem; border-radius: var(--tab-radius); margin: 1rem 0;">
+                  <p><strong>Input:</strong> <code>prices = [7, 1, 5, 3, 6, 4]</code></p>
+                  <pre style="white-space: pre-wrap; background: #fff5ea; padding: 1rem; border-radius: 8px; overflow-x: auto;">  i = 0, prices[i] = 7
+                    
+     j = 1 → 1 - 7 = -6 → maxProfit = 0
+     j = 2 → 5 - 7 = -2 → maxProfit = 0
+     j = 3 → 3 - 7 = -4 → maxProfit = 0
+     j = 4 → 6 - 7 = -1 → maxProfit = 0
+     j = 5 → 4 - 7 = -3 → maxProfit = 0
+
+
+  i = 1, prices[i] = 1
+     j = 2 → 5 - 1 = 4 → maxProfit = 4
+     j = 3 → 3 - 1 = 2 → maxProfit = 4
+     j = 4 → 6 - 1 = 5 → maxProfit = 5
+     j = 5 → 4 - 1 = 3 → maxProfit = 5
+
+  i = 2, prices[i] = 5
+     j = 3 → 3 - 5 = -2 → maxProfit = 5
+     j = 4 → 6 - 5 = 1 → maxProfit = 5
+     j = 5 → 4 - 5 = -1 → maxProfit = 5
+
+   ... and so on.
+
+    Final maxProfit = 5 (buy at 1, sell at 6)
+  </pre>
+                <!-- <p><strong>Output:</strong> <code>Result: ["o", "l", "l", "e", "h"]</code></p> -->
+                  </div>
+                
+        <h2>Visualisation:</h2>
+        <img decoding="async" src="https://namastedev.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-27-at-12.58.36 PM.png" alt="Stocks">
+    </div>
+
+    <div class="wp_blog_code-tabs-container">
+        <div class="wp_blog_code-tabs-header">
+            <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+            <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+            <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+            <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+            <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+            <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="wp_blog_code-tab-content" data-lang="js">
+            <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">maxProfit</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">prices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> maxProfit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  maxProfit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> maxProfit<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>     </code></pre>
+        </div>
+
+        <!-- Python -->
+        <div class="wp_blog_code-tab-content" data-lang="py">
+            <pre class="language-python" tabindex="0"><code class="language-python">
+  <span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          maxProfit <span class="token operator">=</span> <span class="token number">0</span>
+          <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>prices<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+              <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>prices<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                  profit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+                  <span class="token keyword">if</span> profit <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">:</span>
+                      maxProfit <span class="token operator">=</span> profit
+          <span class="token keyword">return</span> maxProfit
+            </code></pre>
+        </div>
+
+        <!-- Java -->
+        <div class="wp_blog_code-tab-content" data-lang="java">
+            <pre class="language-java" tabindex="0"><code class="language-java">
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+      <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> prices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> maxProfit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">int</span> profit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>profit <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                      maxProfit <span class="token operator">=</span> profit<span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> maxProfit<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>        </code></pre>
+        </div>
+
+        <!-- C++ -->
+        <div class="wp_blog_code-tab-content active" data-lang="cpp">
+            <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+ <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span><span class="token operator">:</span>
+      <span class="token keyword">int</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>vector<span class="token operator">&amp;</span> prices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> maxProfit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">int</span> profit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>profit <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">)</span>
+                      maxProfit <span class="token operator">=</span> profit<span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> maxProfit<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>    </code></pre>
+        </div>
+
+        <!-- C -->
+        <div class="wp_blog_code-tab-content" data-lang="c">
+            <pre class="language-c" tabindex="0"><code class="language-c">
+  <span class="token keyword">int</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> prices<span class="token punctuation">,</span> <span class="token keyword">int</span> pricesSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> maxProfit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pricesSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> pricesSize<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">int</span> profit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>profit <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">)</span>
+                  maxProfit <span class="token operator">=</span> profit<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> maxProfit<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>        </code></pre>
+        </div>
+
+        <!-- C# -->
+        <div class="wp_blog_code-tab-content" data-lang="cs">
+            <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+ <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">MaxProfit</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> prices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">int</span></span> maxProfit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> prices<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name"><span class="token keyword">int</span></span> profit <span class="token operator">=</span> prices<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">-</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>profit <span class="token operator">&gt;</span> maxProfit<span class="token punctuation">)</span>
+                        maxProfit <span class="token operator">=</span> profit<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> maxProfit<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>         </code></pre>
+        </div>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+
+                button.classList.add("active");
+                document
+                    .querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`)
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+
+
+
+<p></p>
+</div></div></div>
