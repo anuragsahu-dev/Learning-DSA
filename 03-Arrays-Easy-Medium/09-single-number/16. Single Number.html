@@ -1,0 +1,365 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">&nbsp;Single Number</h1><div class="prose max-w-none">
+<!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+.wp_blog_code-tabs-container {
+    font-family: "Segoe UI", sans-serif !important;
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: white !important;
+}
+
+.wp_blog_code-tabs-header {
+    background: #f7f7f7 !important;
+    display: flex !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+.wp_blog_code-tab-button {
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background 0.2s !important;
+    color: #242B33 !important;
+}
+
+.wp_blog_code-tab-button.active {
+    background: white !important;
+    border-bottom: 3px solid #0073aa !important;
+}
+
+.wp_blog_code-tab-content {
+    display: none !important;
+    padding: 20px !important;
+    background: #242B33 !important;
+}
+
+.wp_blog_code-tab-content > pre {
+    background: #242B33 !important;
+}
+
+.wp_blog_code-tab-content.active {
+    display: block !important;
+}
+
+.wp_blog_code-tab-content pre {
+    margin: 0 !important;
+    overflow-x: auto !important;
+}
+
+.wp_blog_explanation {
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    font-family: "Segoe UI", sans-serif !important;
+    line-height: 1.6 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+}
+
+.wp_blog_explanation h2 {
+    color: #0073aa !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.wp_blog_explanation code {
+    background: #f1f1f1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+}
+
+.wp_blog_explanation h1,
+.wp_blog_explanation h2,
+.wp_blog_explanation h3,
+.wp_blog_explanation h4,
+.wp_blog_explanation h5,
+.wp_blog_explanation h6,
+.wp_blog_explanation p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<!-- ✅ START: Blog Explanation -->
+<div class="wp_blog_explanation">
+    <h2>Problem</h2>
+    <p>Given a non-empty array of integers <code>nums</code>, every element appears twice except for one. Find that single one.</p>
+    <p><strong>You must implement a solution with a linear runtime complexity and use only constant extra space.</strong></p>
+
+    <h2>Examples</h2>
+    <ul>
+        <li><strong>Input:</strong> nums = [2, 2, 1] → <strong>Output:</strong> 1</li>
+        <li><strong>Input:</strong> nums = [4, 1, 2, 1, 2] → <strong>Output:</strong> 4</li>
+        <li><strong>Input:</strong> nums = [1] → <strong>Output:</strong> 1</li>
+    </ul>
+
+    <h2>Constraints</h2>
+    <ul>
+        <li>1 ≤ nums.length ≤ 3 × 10<sup>4</sup></li>
+        <li>-3 × 10<sup>4</sup> ≤ nums[i] ≤ 3 × 10<sup>4</sup></li>
+        <li>Each element appears twice except one that appears only once.</li>
+    </ul>
+
+    <h2>Approach 1: Brute Force (Hash Map)</h2>
+    <ol>
+        <li>Create an empty hash map to store counts of each element.</li>
+        <li>Loop through the array, update the count for each element.</li>
+        <li>Loop again to find the element with count 1 and return it.</li>
+    </ol>
+
+    <h3>Dry Run</h3>
+    <p><strong>Input:</strong> [4, 1, 2, 1, 2]</p>
+    <p><strong>Step 1: Counting frequency</strong></p>
+    <ul>
+        <li>Insert 4 → hash[4] = 1</li>
+        <li>Insert 1 → hash[1] = 1</li>
+        <li>Insert 2 → hash[2] = 1</li>
+        <li>Update 1 → hash[1] = 2</li>
+        <li>Update 2 → hash[2] = 2</li>
+    </ul>
+    <p><strong>Step 2: Find element with count 1</strong></p>
+    <ul>
+        <li>4 → hash[4] = 1 → <strong>Return 4</strong></li>
+    </ul>
+    <h2>Time and Space Complexity</h2>
+    <p><strong>Time Complexity:</strong> O(n)<br>
+    We traverse the array twice: once for counting and once for checking.</p>
+    <p><strong>Space Complexity:</strong> O(n)<br>
+    The hash map may store counts for up to <code>n</code> elements in the worst case.</p>
+</div>
+<!-- ✅ END: Blog Explanation -->
+
+<!-- ✅ START: Code Tabs -->
+<div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+        <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+        <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+        <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+        <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+        <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="js">
+        <pre class="language-javascript" tabindex="0"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">singleNumber</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> hash <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hash<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            hash<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            hash<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>hash<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+        <pre class="language-cpp" tabindex="0"><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+class Solution {
+public:
+    int singleNumber(vector&lt;int&gt;&amp; nums) {
+        unordered_map&lt;int, int&gt; hash;
+        for (int num : nums) {
+            hash[num]++;
+        }
+        for (int num : nums) {
+            if (hash[num] == 1)
+                return num;
+        }
+        return -1;
+    }
+};</code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="c">
+        <pre class="language-c" tabindex="0"><code class="language-c">#include &lt;stdio.h&gt;
+
+int singleNumber(int* nums, int numsSize) {
+    for (int i = 0; i &lt; numsSize; i++) {
+        int count = 0;
+        for (int j = 0; j &lt; numsSize; j++) {
+            if (nums[j] == nums[i]) count++;
+        }
+        if (count == 1) return nums[i];
+    }
+    return -1;
+}</code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="java">
+        <pre class="language-java" tabindex="0"><code class="language-java">import java.util.HashMap;
+
+public class Solution {
+    public int singleNumber(int[] nums) {
+        HashMap&lt;Integer, Integer&gt; hash = new HashMap&lt;&gt;();
+        for (int num : nums) {
+            hash.put(num, hash.getOrDefault(num, 0) + 1);
+        }
+        for (int num : nums) {
+            if (hash.get(num) == 1) {
+                return num;
+            }
+        }
+        return -1;
+    }
+}</code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="py">
+        <pre class="language-python" tabindex="0"><code class="language-python">class Solution:
+    def singleNumber(self, nums):
+        hash = {}
+        for num in nums:
+            hash[num] = hash.get(num, 0) + 1
+        for num in nums:
+            if hash[num] == 1:
+                return num</code></pre>
+    </div>
+</div>
+<!-- ✅ END: Code Tabs -->
+
+<div class="wp_blog_explanation">
+        <h2 class="check">Approach 2 – Optimal using XOR</h2>
+        <p>XOR of two same numbers is 0: <code>a ^ a = 0</code></p>
+        <p>XOR of a number with 0 is the number itself: <code>a ^ 0 = a</code></p>
+        <p>So, if all elements occur twice except one, XOR-ing all gives that unique number.</p>
+    
+        <h2>Dry Run</h2>
+        <p><strong>Input:</strong> [2, 3, 5, 2, 3]</p>
+        <p>Start <code>xor = 0</code></p>
+        <div class="code">
+          xor = 0 ^ 2 = 2<br>
+          xor = 2 ^ 3 = 1<br>
+          xor = 1 ^ 5 = 4<br>
+          xor = 4 ^ 2 = 6<br>
+          xor = 6 ^ 3 = 5
+        </div>
+        <p class="check"> Final answer: 5</p>
+       
+            <h2>Time and Space Complexity</h2>
+            <p><strong>Time Complexity:</strong> O(n)<br>
+                where n is the number of elements in the array
+            </p>
+            <p><strong>Space Complexity:</strong> O(1)<br>
+                no extra space used
+            </p>
+         
+        
+    
+</div>
+<div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+      <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+      <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+      <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+      <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+      <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+  
+    <div class="wp_blog_code-tab-content" data-lang="js">
+      <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+  <span class="token keyword">var</span> <span class="token function-variable function">singleNumber</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> xor <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          xor <span class="token operator">=</span> xor <span class="token operator">^</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> xor<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      </code></pre>
+    </div>
+  
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+      <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+  class Solution {
+  public:
+      int singleNumber(vector&amp; nums) {
+          int xorVal = 0;
+          for (int num : nums) {
+              xorVal ^= num;
+          }
+          return xorVal;
+      }
+  };
+      </code></pre>
+    </div>
+  
+    <div class="wp_blog_code-tab-content" data-lang="c">
+      <pre class="language-c" tabindex="0"><code class="language-c">
+  int singleNumber(int* nums, int numsSize) {
+      int xor = 0;
+      for (int i = 0; i &lt; numsSize; i++) {
+          xor ^= nums[i];
+      }
+      return xor;
+  }
+      </code></pre>
+    </div>
+  
+    <div class="wp_blog_code-tab-content" data-lang="java">
+      <pre class="language-java" tabindex="0"><code class="language-java">
+  public class Solution {
+      public int singleNumber(int[] nums) {
+          int xor = 0;
+          for (int num : nums) {
+              xor ^= num;
+          }
+          return xor;
+      }
+  }
+      </code></pre>
+    </div>
+  
+    <div class="wp_blog_code-tab-content" data-lang="py">
+      <pre class="language-python" tabindex="0"><code class="language-python">
+  class Solution:
+      def singleNumber(self, nums):
+          xor = 0
+          for num in nums:
+              xor ^= num
+          return xor
+      </code></pre>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+  </div>
+  
+<!-- ✅ JS Tab Switch Logic -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.wp_blog_code-tab-button');
+    const contents = document.querySelectorAll('.wp_blog_code-tab-content');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const lang = button.getAttribute('data-lang');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            contents.forEach(content => {
+                content.classList.toggle('active', content.getAttribute('data-lang') === lang);
+            });
+        });
+    });
+});
+</script>
+
+
+
+<p></p>
+</div></div></div>
