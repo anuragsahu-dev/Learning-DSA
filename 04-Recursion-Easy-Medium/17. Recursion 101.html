@@ -1,0 +1,285 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Recursion 101</h1><div class="prose max-w-none">
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style> 
+.wp_blog_theme {
+  --primary: #E58C32;
+  --secondary: #f8c291;
+  --light-bg: #fef9f4;
+  --text-dark: #2d2d2d;
+  --tab-radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --code-bg: #001f3f;
+  --code-text: #d4f1ff;
+}
+
+.wp_blog_container {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+/* Heading */
+.wp_blog_main-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-top: 2.5rem;
+  font-weight: bold;
+}
+
+/* Explanation Card */
+.wp_blog_explanation,
+.wp_blog_code-tabs-container {
+  max-width: 940px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--tab-radius);
+  box-shadow: var(--shadow);
+}
+
+/* Text and Visuals */
+.wp_blog_explanation h2{
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.wp_blog_explanation h5{
+  color: var(--primary);
+}
+
+.wp_blog_explanation p,
+.wp_blog_explanation li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+}
+.wp_blog_explanation code {
+  background: #f9cea6;
+  color: #2d2d2d;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+.wp_blog_explanation img {
+  max-width: 100%;
+  border-radius: var(--tab-radius);
+  margin-top: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* Tab Buttons */
+.wp_blog_code-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.wp_blog_code-tab-button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.wp_blog_code-tab-button:hover {
+  background: var(--secondary);
+}
+.wp_blog_code-tab-button.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Code Content */
+.wp_blog_code-tab-content {
+  display: none;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+}
+.wp_blog_code-tab-content.active {
+  display: block;
+}
+.wp_blog_code-tab-content pre {
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border-radius: var(--tab-radius);
+  color: var(--code-text);
+}
+</style>
+
+<div class="wp_blog_container wp_blog_theme"> 
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+    <h1 class="wp_blog_main-heading"></h1>
+    <div class="wp_blog_explanation">
+        <h2>Recursion</h2>
+        <p><strong>Recursion is a technique</strong> where a <code>function calls</code> itself to solve a problem by <strong>breaking</strong> it down into <strong>smaller sub-problems</strong>.</p>
+
+        <h2>Base Condition:</h2>
+        <ul>
+            <li>Every <strong>function call</strong> in <code>recursion</code> is stored in the <code>call stack</code>. If the recursion is too deep or has no base condition, the call stack keeps growing until memory is exhausted, causing a stack overflow error.</li>
+            <li>A <strong>base condition</strong> is essential in recursion. It stops the recursion when a certain condition is met. Without it, recursion goes infinite and causes a stack overflow.
+                <strong><code>if (num === 0) return;</code>.</strong>
+            </li>
+        </ul>
+
+                <h2>Approach:</h2>
+                <ul>
+                    <li><code>Problem:</code> Print numbers from n to 1 using <code>recursion</code>.</li>
+                    <li>Print the <code>number</code>.</li>
+                    <li>Recurse with <code>num - 1</code>.</li>
+                    <li>Stop when <code>num === 0</code>.</li>
+                </ul>
+
+                <h2>Time Complexity: <code>O(n)</code></h2>
+                <li>
+                  <p> one function call per number from n to 1.</p>
+                </li>
+
+                <h2>Space Complexity: <code>O(n)</code></h2>
+                <li>
+                  <p>Due to recursive call stack frames.</p>
+                </li>
+    </div>
+
+    <div class="wp_blog_code-tabs-container">
+        <div class="wp_blog_code-tabs-header">
+            <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+            <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+            <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+            <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+            <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+            <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="wp_blog_code-tab-content" data-lang="js">
+            <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">function</span> <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printDescending</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+</code></pre>
+        </div>
+
+        <!-- Python -->
+        <div class="wp_blog_code-tab-content" data-lang="py">
+            <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">def</span> <span class="token function">print_descending</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+   <span class="token keyword">if</span> num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+       <span class="token keyword">return</span>
+   <span class="token keyword">print</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+   print_descending<span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+print_descending<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+            </code></pre>
+        </div>
+
+        <!-- Java -->
+        <div class="wp_blog_code-tab-content" data-lang="java">
+            <pre class="language-java" tabindex="0"><code class="language-java">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printDescending</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+            </code></pre>
+        </div>
+
+        <!-- C++ -->
+        <div class="wp_blog_code-tab-content active" data-lang="cpp">
+            <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        <span class="token function">printDescending</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+        </code></pre>
+        </div>
+
+        <!-- C -->
+        <div class="wp_blog_code-tab-content" data-lang="c">
+            <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+        <span class="token keyword">void</span> <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">printDescending</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printDescending</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+                    </code></pre>
+        </div>
+
+        <!-- C# -->
+        <div class="wp_blog_code-tab-content" data-lang="cs">
+            <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Program</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">PrintDescending</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">PrintDescending</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">PrintDescending</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>          </code></pre>
+        </div>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+
+                button.classList.add("active");
+                document
+                    .querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`)
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+
+</div></div></div>
