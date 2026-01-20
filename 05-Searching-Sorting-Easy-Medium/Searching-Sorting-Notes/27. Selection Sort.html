@@ -1,0 +1,363 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Selection Sort</h1><div class="prose max-w-none">
+<!-- Sum of all numbers in array using Recursion 1 -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_theme {
+    --primary: #e58c32;
+    --secondary: #f8c291;
+    --light-bg: #fef9f4;
+    --text-dark: #2d2d2d;
+    --tab-radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --code-bg: #001f3f;
+    --code-text: #d4f1ff;
+  }
+
+  .wp_blog_container {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+  }
+    /* Heading */
+    .wp_blog_main-heading {
+        text-align: center;
+        font-size: 2.4rem;
+        color: var(--primary);
+        margin-top: 2.5rem;
+        font-weight: bold;
+    }
+
+    /* Explanation Card */
+    .wp_blog_explanation,
+    .wp_blog_code-tabs-container {
+        max-width: 940px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: var(--tab-radius);
+        box-shadow: var(--shadow);
+    }
+
+    /* Text and Visuals */
+    .wp_blog_explanation h2 {
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+    .wp_blog_explanation p,
+    .wp_blog_explanation li {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0.5rem 0;
+    }
+    .wp_blog_explanation code {
+        background: #fef9f4;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+    }
+    .wp_blog_explanation img {
+        max-width: 100%;
+        border-radius: var(--tab-radius);
+        margin-top: 1rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Tab Buttons */
+    .wp_blog_code-tabs-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .wp_blog_code-tab-button {
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--primary);
+        background: white;
+        color: var(--primary);
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .wp_blog_code-tab-button:hover {
+        background: var(--secondary);
+    }
+    .wp_blog_code-tab-button.active {
+        background: var(--primary);
+        color: white;
+    }
+
+    /* Code Content */
+    .wp_blog_code-tab-content {
+        display: none;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+    }
+    .wp_blog_code-tab-content.active {
+        display: block;
+    }
+    .wp_blog_code-tab-content pre {
+        margin: 0;
+        padding: 1.5rem;
+        font-size: 1rem;
+        overflow-x: auto;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+        color: var(--code-text);
+    }
+</style>
+
+<div class="wp_blog_container wp_blog_theme">
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<h1 class="wp_blog_main-heading"></h1>
+
+<div class="wp_blog_explanation">
+
+    <h2>Selection Sort</h2>
+    <ul>
+        <li><strong>Selection Sort</strong> is a <code>simple comparison-based</code> sorting algorithm.</li>
+        <li>It divides the array into <code>two parts</code>: a <strong>sorted subarray</strong> and an <strong>unsorted subarray</strong>.</li>
+        <li>Initially, the <strong>sorted part is empty</strong>, and the unsorted part is the entire array. </li>
+        <li>In <code>each iteration</code>, it finds the minimum element from the <strong>unsorted part</strong> and moves it to the end of the <code>sorted part</code>.</li>
+    </ul>
+    <h2>Example 1:</h2>
+    <p><strong>Input:</strong> [4, 5, 1, 3, 9]</p>
+    <p><strong>Output:</strong> [1, 3, 4, 5, 9]</p>
+
+    <!-- <h2>Example 2:</h2>
+    <p><strong>Input:</strong> arr = [6, 8, 0, 3]</p>
+    <p><strong>Output:</strong> -1</p>
+    <p><strong>Explanation: </strong>5 is not present in the array</p>
+ -->
+
+    <h2>Approach:</h2>
+    <ul>
+        <li><strong>Iterate</strong> over the array from index <code>0</code> to <code>n-2</code>.</li>
+        <li><strong>For each index</strong> <code>i</code>, assume the element at <code>i</code> is the <code>minimum</code> in the <strong>unsorted part</strong>.</li>
+        <li>Run an inner loop from <code>j = i+1 to n-1</code> to find the actual minimum element.</li>
+        <li>If a smaller element is found, update the <code>min index</code>.</li>
+        <li>After the <strong>inner loop, swap the element</strong> at <code>i</code> with the element at min (if they’re not the same).</li>
+        <li><code>Repeat</code> until the <strong>array is sorted</strong>.</li>
+    </ul>
+
+    <h2>Time &amp; Space Complexity:</h2>
+    <p><strong>Time Complexity: O(n<sup>2</sup>) </strong> In all cases <code>best, average and worst</code>.</p>
+    <p>Roughly <code>n*(n-1)/2</code> comparisons are always performed.</p>
+    <p><strong>Space Complexity: O(1)</strong>  Selection Sort is an in-place sorting algorithm, so it doesn’t require extra space.</p>
+</div>
+
+<h2>Dry Run</h2> <div style="background: #f9f9f9; border-left: 4px solid var(--primary); padding: 1rem; border-radius: var(--tab-radius); margin: 1rem 0;"> <p><strong>Input:</strong> <code>arr = [4, 5, 1, 3, 9]</code></p> <pre style="white-space: pre-wrap; background: #fff5ea; padding: 1rem; border-radius: 8px; overflow-x: auto;"> i = 0 → min_idx = 0 j = 1 → arr[1] = 5 &gt; arr[0] = 4 → no change j = 2 → arr[2] = 1 &lt; arr[0] = 4 → min_idx = 2 j = 3 → arr[3] = 3 &gt; arr[2] = 1 → no change j = 4 → arr[4] = 9 &gt; arr[2] = 1 → no change swap arr[0] ↔ arr[2] → [1, 5, 4, 3, 9] i = 1 → min_idx = 1 j = 2 → arr[2] = 4 &lt; arr[1] = 5 → min_idx = 2 j = 3 → arr[3] = 3 &lt; arr[2] = 4 → min_idx = 3 j = 4 → arr[4] = 9 &gt; arr[3] = 3 → no change swap arr[1] ↔ arr[3] → [1, 3, 4, 5, 9] i = 2 → min_idx = 2 j = 3 → arr[3] = 5 &gt; arr[2] = 4 → no change j = 4 → arr[4] = 9 &gt; arr[2] = 4 → no change no swap → [1, 3, 4, 5, 9] i = 3 → min_idx = 3 j = 4 → arr[4] = 9 &gt; arr[3] = 5 → no change no swap → [1, 3, 4, 5, 9] <strong>Final Sorted Array:</strong> [1, 3, 4, 5, 9] </pre> </div>
+
+<div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+        <button class="wp_blog_code-tab-button" data-lang="js">
+            JavaScript
+        </button>
+        <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+        <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+        <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+        <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+        <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="js">
+        <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+ <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">function</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> min <span class="token operator">=</span> i<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          min <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Sorted array"</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="py">
+        <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">def</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+      <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          min_idx <span class="token operator">=</span> i
+          <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+              <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                  min_idx <span class="token operator">=</span> j
+          <span class="token keyword">if</span> min_idx <span class="token operator">!=</span> i<span class="token punctuation">:</span>
+              arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+      <span class="token keyword">return</span> arr
+  
+  arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Sorted array"</span><span class="token punctuation">,</span> selectionSort<span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="java">
+        <pre class="language-java" tabindex="0"><code class="language-java">
+ <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> min <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            min <span class="token operator">=</span> j<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token function">selectionSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> num <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+        <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+ 
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+  
+  <span class="token keyword">void</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> min <span class="token operator">=</span> i<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          min <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">selectionSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+      
+    </code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="c">
+        <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+ <span class="token keyword">void</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> min <span class="token operator">=</span> i<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          min <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">selectionSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+      
+     
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="cs">
+        <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">LinearSearch</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arr<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> target<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arr <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> result <span class="token operator">=</span> <span class="token function">LinearSearch</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Element found at index "</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    </div>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+                button.classList.add("active");
+                document
+                    .querySelector(
+                        `.wp_blog_code-tab-content[data-lang="${lang}"]`
+                    )
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+</div></div></div>

@@ -1,0 +1,424 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Merge Sort</h1><div class="prose max-w-none">
+<!-- Sum of all numbers in array using Recursion 1 -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_theme {
+    --primary: #e58c32;
+    --secondary: #f8c291;
+    --light-bg: #fef9f4;
+    --text-dark: #2d2d2d;
+    --tab-radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --code-bg: #001f3f;
+    --code-text: #d4f1ff;
+  }
+
+  .wp_blog_container {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+  }
+    /* Heading */
+    .wp_blog_main-heading {
+        text-align: center;
+        font-size: 2.4rem;
+        color: var(--primary);
+        margin-top: 2.5rem;
+        font-weight: bold;
+    }
+
+    /* Explanation Card */
+    .wp_blog_explanation,
+    .wp_blog_code-tabs-container {
+        max-width: 940px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: var(--tab-radius);
+        box-shadow: var(--shadow);
+    }
+
+    /* Text and Visuals */
+    .wp_blog_explanation h2 {
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+    .wp_blog_explanation p,
+    .wp_blog_explanation li {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0.5rem 0;
+    }
+    .wp_blog_explanation code {
+        background: #fef9f4;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+    }
+    .wp_blog_explanation img {
+        max-width: 100%;
+        border-radius: var(--tab-radius);
+        margin-top: 1rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Tab Buttons */
+    .wp_blog_code-tabs-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .wp_blog_code-tab-button {
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--primary);
+        background: white;
+        color: var(--primary);
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .wp_blog_code-tab-button:hover {
+        background: var(--secondary);
+    }
+    .wp_blog_code-tab-button.active {
+        background: var(--primary);
+        color: white;
+    }
+
+    /* Code Content */
+    .wp_blog_code-tab-content {
+        display: none;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+    }
+    .wp_blog_code-tab-content.active {
+        display: block;
+    }
+    .wp_blog_code-tab-content pre {
+        margin: 0;
+        padding: 1.5rem;
+        font-size: 1rem;
+        overflow-x: auto;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+        color: var(--code-text);
+    }
+</style>
+
+<div class="wp_blog_container wp_blog_theme">
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<h1 class="wp_blog_main-heading"></h1>
+
+<div class="wp_blog_explanation">
+
+    <h2>Merge Sort</h2>
+    <ul>
+        <li><strong>Merge Sort</strong> is a popular <code>divide-and-conquer</code> sorting algorithm that divides the input <strong>array into two halves</strong>, recursively sorts them, and then merges the sorted halves into one <code>sorted result</code>.</li>
+        <li>It is an <strong>example</strong> of a <code>stable sort</code> that guarantees <code>O(n log n)</code> performance in all <code>cases</code> — best, worst, and average.</li>
+    </ul>
+    <!-- <h2>Example 1:</h2>
+    <p><strong>Input:</strong> [4, 5, 1, 3, 9]</p>
+    <p><strong>Output:</strong> [1, 3, 4, 5, 9]</p> -->
+
+    <!-- <h2>Example 2:</h2>
+    <p><strong>Input:</strong> arr = [6, 8, 0, 3]</p>
+    <p><strong>Output:</strong> -1</p>
+    <p><strong>Explanation: </strong>5 is not present in the array</p>
+ -->
+
+    <h2>Approach:</h2>
+    <ul>
+        <li><strong>Divide: </strong>Split the array into <code>two</code> halves.</li>
+        <li><strong>Conquer: </strong>Recursively <code>sort</code> each half using <strong>merge sort</strong>.</li>
+        <li><strong>Combine: </strong> <code>Merge the two sorted</code> halves into one sorted array.</li>
+    </ul>
+
+    <h2>Key Concept: <code>Merge Step</code></h2>
+    <ul>
+        <li>The key step is <strong>merging two sorted arrays</strong> efficiently into one <code>sorted array</code>.</li>
+        <li>This is done using a <code>two-pointer approach</code>, comparing elements from <code>both</code> <strong>arrays and adding the smaller one into a new result array</strong>.</li>
+    </ul>
+
+    <h2>Time &amp; Space Complexity:</h2>
+    <p><strong>Time Complexity: O(n log n) </strong> Divide takes log n steps and merging takes linear time.</p>
+    <p><strong>Space Complexity: O(n)</strong> Additional space is needed to store the merged arrays.</p>
+</div>
+
+<h2>Dry Run</h2> 
+<div style="background: #f9f9f9; border-left: 4px solid var(--primary); padding: 1rem; border-radius: var(--tab-radius); margin: 1rem 0;"> 
+  <p><strong>Input:</strong> <code>nums = [4, 5, 1, 3, 9]</code></p> 
+
+  <pre style="white-space: pre-wrap; background: #fff5ea; padding: 1rem; border-radius: 8px; overflow-x: auto;"> 
+Step 1: sortArray([4, 5, 1, 3, 9])
+mid = 2
+left = sortArray([4, 5]) 
+right = sortArray([1, 3, 9]) 
+
+---
+
+Step 2: sortArray([4, 5])
+mid = 1
+left = sortArray([4]) → [4] (base case)
+right = sortArray([5]) → [5] (base case)
+merge([4], [5]) → [4, 5]
+
+---
+
+Step 3: sortArray([1, 3, 9])
+mid = 1
+left = sortArray([1]) → [1] (base case)
+right = sortArray([3, 9])
+
+---
+
+Step 4: sortArray([3, 9])
+mid = 1
+left = sortArray([3]) → [3] (base case)
+right = sortArray([9]) → [9] (base case)
+merge([3], [9]) → [3, 9]
+
+---
+
+Step 5: merge([1], [3, 9])
+Compare 1 and 3 → take 1
+Remaining → [3, 9]
+Result → [1, 3, 9]
+
+---
+
+Step 6: merge([4, 5], [1, 3, 9])
+Compare 4 and 1 → take 1 → [1]
+Compare 4 and 3 → take 3 → [1, 3]
+Compare 4 and 9 → take 4 → [1, 3, 4]
+Compare 5 and 9 → take 5 → [1, 3, 4, 5]
+Remaining → [9]
+Result → [1, 3, 4, 5, 9]
+
+<strong>Final Sorted Array:</strong> [1, 3, 4, 5, 9]
+  </pre> 
+</div>
+
+<div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+        <button class="wp_blog_code-tab-button" data-lang="js">
+            JavaScript
+        </button>
+        <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+        <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+        <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+        <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+        <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="js">
+        <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">sortArray</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> nums<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> mid <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> left <span class="token operator">=</span> <span class="token function">sortArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> right <span class="token operator">=</span> <span class="token function">sortArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>mid<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">merge</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token parameter">left<span class="token punctuation">,</span> right</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> left<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> right<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>res<span class="token punctuation">,</span> <span class="token operator">...</span>left<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">...</span>right<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>   
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="py">
+        <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">sortArray</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> nums
+        mid <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+        left <span class="token operator">=</span> self<span class="token punctuation">.</span>sortArray<span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token punctuation">:</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        right <span class="token operator">=</span> self<span class="token punctuation">.</span>sortArray<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>merge<span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        i <span class="token operator">=</span> j <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> i <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>left<span class="token punctuation">)</span> <span class="token keyword">and</span> j <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> left<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                i <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                j <span class="token operator">+=</span> <span class="token number">1</span>
+        res<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        res<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>right<span class="token punctuation">[</span>j<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> res  
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="java">
+        <pre class="language-java" tabindex="0"><code class="language-java">
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">sortArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> nums<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> left <span class="token operator">=</span> <span class="token function">sortArray</span><span class="token punctuation">(</span><span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOfRange</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> right <span class="token operator">=</span> <span class="token function">sortArray</span><span class="token punctuation">(</span><span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOfRange</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">merge</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> left<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>left<span class="token punctuation">.</span>length <span class="token operator">+</span> right<span class="token punctuation">.</span>length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> left<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> right<span class="token punctuation">.</span>length<span class="token punctuation">)</span>
+            res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">:</span> right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> left<span class="token punctuation">.</span>length<span class="token punctuation">)</span> res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> right<span class="token punctuation">.</span>length<span class="token punctuation">)</span> res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+        <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+ 
+ <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+  <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span><span class="token operator">:</span>
+      vector <span class="token function">sortArray</span><span class="token punctuation">(</span>vector<span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> nums<span class="token punctuation">;</span>
+          <span class="token keyword">int</span> mid <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+          vector <span class="token function">left</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          vector <span class="token function">right</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> mid<span class="token punctuation">,</span> nums<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">sortArray</span><span class="token punctuation">(</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">sortArray</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  
+      vector <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">const</span> vector<span class="token operator">&amp;</span> left<span class="token punctuation">,</span> <span class="token keyword">const</span> vector<span class="token operator">&amp;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          vector res<span class="token punctuation">;</span>
+          <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>left<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>right<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">else</span> res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>left<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>right<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    </code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="c">
+        <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+  <span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> m<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k<span class="token punctuation">;</span>
+      <span class="token keyword">int</span> n1 <span class="token operator">=</span> m <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span> n2 <span class="token operator">=</span> r <span class="token operator">-</span> m<span class="token punctuation">;</span>
+      <span class="token keyword">int</span><span class="token operator">*</span> L <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>n1 <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span><span class="token operator">*</span> R <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>n2 <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n1<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+          L<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>l <span class="token operator">+</span> i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n2<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+          R<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>m <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">=</span> l<span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n1 <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> n2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>L<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> R<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> L<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> R<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> L<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> n2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> R<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">free</span><span class="token punctuation">(</span>L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">free</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">void</span> <span class="token function">mergeSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">&lt;</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> m <span class="token operator">=</span> l <span class="token operator">+</span> <span class="token punctuation">(</span>r <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+          <span class="token function">mergeSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">mergeSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token comment">/**
+   * Note: The returned array must be malloced, assume caller calls free().
+   */</span>
+  <span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">sortArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span><span class="token operator">*</span> result <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>numsSize <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">mergeSort</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> numsSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">*</span>returnSize <span class="token operator">=</span> numsSize<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="cs">
+        <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">SortArray</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span>Length <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> nums<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> mid <span class="token operator">=</span> nums<span class="token punctuation">.</span>Length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> left <span class="token operator">=</span> <span class="token function">SortArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token range operator">..</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> right <span class="token operator">=</span> <span class="token function">SortArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token range operator">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">Merge</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">Merge</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> left<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">int</span></span><span class="token punctuation">[</span>left<span class="token punctuation">.</span>Length <span class="token operator">+</span> right<span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> left<span class="token punctuation">.</span>Length <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> right<span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
+            res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> left<span class="token punctuation">.</span>Length<span class="token punctuation">)</span> res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> right<span class="token punctuation">.</span>Length<span class="token punctuation">)</span> res<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    </div>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+                button.classList.add("active");
+                document
+                    .querySelector(
+                        `.wp_blog_code-tab-content[data-lang="${lang}"]`
+                    )
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+</div></div></div>

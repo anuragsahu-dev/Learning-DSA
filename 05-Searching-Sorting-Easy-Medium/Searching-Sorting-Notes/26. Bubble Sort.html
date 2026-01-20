@@ -1,0 +1,385 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Bubble Sort</h1><div class="prose max-w-none">
+<!-- Sum of all numbers in array using Recursion 1 -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_theme {
+    --primary: #e58c32;
+    --secondary: #f8c291;
+    --light-bg: #fef9f4;
+    --text-dark: #2d2d2d;
+    --tab-radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --code-bg: #001f3f;
+    --code-text: #d4f1ff;
+  }
+
+  .wp_blog_container {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+  }
+    /* Heading */
+    .wp_blog_main-heading {
+        text-align: center;
+        font-size: 2.4rem;
+        color: var(--primary);
+        margin-top: 2.5rem;
+        font-weight: bold;
+    }
+
+    /* Explanation Card */
+    .wp_blog_explanation,
+    .wp_blog_code-tabs-container {
+        max-width: 940px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: var(--tab-radius);
+        box-shadow: var(--shadow);
+    }
+
+    /* Text and Visuals */
+    .wp_blog_explanation h2 {
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+    .wp_blog_explanation p,
+    .wp_blog_explanation li {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0.5rem 0;
+    }
+    .wp_blog_explanation code {
+        background: #fef9f4;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+    }
+    .wp_blog_explanation img {
+        max-width: 100%;
+        border-radius: var(--tab-radius);
+        margin-top: 1rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Tab Buttons */
+    .wp_blog_code-tabs-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .wp_blog_code-tab-button {
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--primary);
+        background: white;
+        color: var(--primary);
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .wp_blog_code-tab-button:hover {
+        background: var(--secondary);
+    }
+    .wp_blog_code-tab-button.active {
+        background: var(--primary);
+        color: white;
+    }
+
+    /* Code Content */
+    .wp_blog_code-tab-content {
+        display: none;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+    }
+    .wp_blog_code-tab-content.active {
+        display: block;
+    }
+    .wp_blog_code-tab-content pre {
+        margin: 0;
+        padding: 1.5rem;
+        font-size: 1rem;
+        overflow-x: auto;
+        background: var(--code-bg);
+        border-radius: var(--tab-radius);
+        color: var(--code-text);
+    }
+</style>
+
+<div class="wp_blog_container wp_blog_theme">
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<h1 class="wp_blog_main-heading"></h1>
+
+<div class="wp_blog_explanation">
+
+    <h2>Bubble Sort</h2>
+    <ul>
+        <li><strong>Bubble Sort</strong> is a simple <code>sorting algorithm</code> that <strong>repeatedly steps through the list, compares adjacent elements</strong>, and swaps them if they are in the wrong order.</li>
+        <li>This process is repeated until <strong>the array is sorted</strong>.</li>
+        <li> After <strong>each pass</strong>, the largest unsorted element <code>“bubbles up” to its correct position</code> at the end of the array. It’s called “Bubble Sort” </li>
+        <li>As <code>smaller elements</code> slowly “bubble” to the top of the list.</li>
+    </ul>
+    <!-- <h2>Example 1:</h2>
+    <p><strong>Input:</strong> [1, 3, 5, 7, 9]</p>
+    <p><strong>Output:</strong> 7</p> -->
+
+    <!-- <h2>Example 2:</h2>
+    <p><strong>Input:</strong> arr = [6, 8, 0, 3]</p>
+    <p><strong>Output:</strong> -1</p>
+    <p><strong>Explanation: </strong>5 is not present in the array</p>
+ -->
+
+    <h2>Approach:</h2>
+    <ul>
+        <li><strong>Iterate</strong> through the <code>array multiple times</code>.</li>
+        <li>In <code>each pass</code>, compare <strong>adjacent elements</strong>.</li>
+        <li>If the <code>current element</code> is <strong>greater than the next one</strong>, swap them.</li>
+        <li><strong>After each pass</strong>, the <code>largest unsorted element</code> bubbles up to its correct position at the <code>end</code>.</li>
+        <li>Use a <code>boolean flag</code> (isSwapped) to <strong>track whether any swapping happened</strong>.</li>
+        <li>If <code>no swaps</code> occurred in a full pass, the <code>array is already sorted</code> → early exit (optimization).</li>
+        <li>Repeat this process for <code>n - 1</code> passes (where n is the array length), or until no <strong>swaps are needed</strong>.</li>
+    </ul>
+
+    <h2>Time &amp; Space Complexity:</h2>
+    <p><strong>Time Complexity: O(n) (Best Case)</strong> when array is already sorted (optimized with isSwapped).</p>
+    <p><strong>Worst Case: O(n<sup>2</sup>)</strong> When array is in reverse order.</p>
+    <p><strong>Space Complexity: O(1)</strong>  In-place sorting, no extra space used.</p>
+</div>
+
+<h2>Dry Run</h2>
+<div style="background: #f9f9f9; border-left: 4px solid var(--primary); padding: 1rem; border-radius: var(--tab-radius); margin: 1rem 0;">
+  <p><strong>Input:</strong> <code>arr = [4, 5, 1, 3, 9]</code></p>
+  <pre style="white-space: pre-wrap; background: #fff5ea; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+Pass 1 (i = 0):
+  j = 0 → [4, 5, 1, 3, 9] → 4 &lt; 5 → no swap
+  j = 1 → [4, 5, 1, 3, 9] → 5 &gt; 1 → swap → [4, 1, 5, 3, 9]
+  j = 2 → [4, 1, 5, 3, 9] → 5 &gt; 3 → swap → [4, 1, 3, 5, 9]
+  j = 3 → [4, 1, 3, 5, 9] → 5 &lt; 9 → no swap
+
+Pass 2 (i = 1):
+  j = 0 → [4, 1, 3, 5, 9] → 4 &gt; 1 → swap → [1, 4, 3, 5, 9]
+  j = 1 → [1, 4, 3, 5, 9] → 4 &gt; 3 → swap → [1, 3, 4, 5, 9]
+  j = 2 → [1, 3, 4, 5, 9] → 4 &lt; 5 → no swap
+
+Pass 3 (i = 2):
+  j = 0 → [1, 3, 4, 5, 9] → 1 &lt; 3 → no swap
+  j = 1 → [1, 3, 4, 5, 9] → 3 &lt; 4 → no swap
+  → No swaps → break
+
+  </pre>
+  <p><strong>Final:</strong> <code>arr: [1, 3, 4, 5, 9]</code></p>
+</div>
+
+
+<div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+        <button class="wp_blog_code-tab-button" data-lang="js">
+            JavaScript
+        </button>
+        <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+        <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+        <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+        <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+        <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="js">
+        <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+ <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">]</span>
+  
+  <span class="token keyword">function</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> iarr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> temp<span class="token operator">=</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+          arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+          arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span>
+          isSwapped<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>isSwapped<span class="token punctuation">)</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Sorted array"</span><span class="token punctuation">,</span>result<span class="token punctuation">)</span>
+      
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="py">
+        <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">def</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      is_swapped <span class="token operator">=</span> <span class="token boolean">False</span>
+      <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+          arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+          is_swapped <span class="token operator">=</span> <span class="token boolean">True</span>
+      <span class="token keyword">if</span> <span class="token keyword">not</span> is_swapped<span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">return</span> arr
+  
+  arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Sorted array:"</span><span class="token punctuation">,</span> bubbleSort<span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    </code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="java">
+        <pre class="language-java" tabindex="0"><code class="language-java">
+ <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">boolean</span> isSwapped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+            isSwapped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isSwapped<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Sorted array: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> num <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>num <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+    
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+        <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+ 
+  <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+  
+  <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">bool</span> isSwapped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          isSwapped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isSwapped<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Sorted array: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+      
+    </code></pre>
+    </div>
+
+    <div class="wp_blog_code-tab-content" data-lang="c">
+        <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+ <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h&gt;</span></span>
+ 
+  
+  <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      bool isSwapped <span class="token operator">=</span> false<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+          arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+          isSwapped <span class="token operator">=</span> true<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isSwapped<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Sorted array: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+     
+</code></pre>
+    </div>
+    <div class="wp_blog_code-tab-content" data-lang="cs">
+        <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arr<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> n <span class="token operator">=</span> arr<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">bool</span></span> isSwapped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token class-name"><span class="token keyword">int</span></span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                    isSwapped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isSwapped<span class="token punctuation">)</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> arr<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arr <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> result <span class="token operator">=</span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Sorted array: "</span> <span class="token operator">+</span> <span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>  </code></pre>
+    </div>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+        const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const lang = button.getAttribute("data-lang");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) =>
+                    content.classList.remove("active")
+                );
+                button.classList.add("active");
+                document
+                    .querySelector(
+                        `.wp_blog_code-tab-content[data-lang="${lang}"]`
+                    )
+                    .classList.add("active");
+            });
+        });
+    });
+</script>
+</div></div></div>
