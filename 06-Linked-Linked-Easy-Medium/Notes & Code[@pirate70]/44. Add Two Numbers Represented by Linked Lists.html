@@ -1,0 +1,296 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Add Two Numbers Represented by Linked Lists</h1><div class="prose max-w-none">
+<!-- PrismJS for Syntax Highlighting -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_main-heading {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #E58C32;
+    margin-top: 2.5rem;
+    font-weight: bold;
+  }
+
+  .wp_blog_explanation,
+  .wp_blog_code-tabs-container {
+    max-width: 940px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #f9fafb;
+  }
+
+  .wp_blog_explanation h2 {
+    font-size: 1.4rem;
+    color: #E58C32;
+    margin-bottom: 0.75rem;
+  }
+
+  .wp_blog_explanation p,
+  .wp_blog_explanation li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0.5rem 0;
+    color: #1f2937;
+  }
+
+  .wp_blog_explanation code {
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    font-family: 'Courier New', monospace;
+  }
+
+  .wp_blog_code-tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .wp_blog_code-tab-button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #E58C32;
+    color: #E58C32;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: #E58C32;
+    color: white;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none;
+    background: #111827;
+    border-radius: 12px;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0;
+    padding: 1.5rem;
+    font-size: 1rem;
+    overflow-x: auto;
+    color: #f3f4f6;
+    background: #111827;
+    border-radius: 12px;
+  }
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+  <h2>Problem Statement:</h2>
+  <p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each node contains a single digit. Add the two numbers and return the result as a linked list.</p>
+  <p>You may assume the two numbers do not contain any leading zeros, except the number 0 itself.</p>
+
+  <h2>Examples:</h2>
+  <p><strong>Input:</strong> l1 = [2,4,3], l2 = [5,6,4]<br><strong>Output:</strong> [7,0,8]<br><strong>Explanation:</strong> 342 + 465 = 807</p>
+
+  <p><strong>Input:</strong> l1 = [0], l2 = [0]<br><strong>Output:</strong> [0]</p>
+
+  <p><strong>Input:</strong> l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]<br><strong>Output:</strong> [8,9,9,9,0,0,0,1]</p>
+
+  <h2>Constraints:</h2>
+  <ul>
+    <li>The number of nodes in each linked list is in the range [1, 100].</li>
+    <li>0 ≤ Node.val ≤ 9</li>
+    <li>It is guaranteed that the list represents a number that does not have leading zeros.</li>
+  </ul>
+
+  <h2>Approach:</h2>
+  <ul>
+    <li>Initialize a dummy node to build the result list and a <code>carry</code> variable set to 0.</li>
+    <li>Traverse both linked lists simultaneously. For each node, compute the sum of values plus carry.</li>
+    <li>Create a new node with <code>sum % 10</code> and update carry to <code>sum / 10</code>.</li>
+    <li>Continue until both lists are exhausted and carry becomes 0.</li>
+  </ul>
+
+  <h2>Time and Space Complexity:</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(n) where n is the length of the longer list.</li>
+    <li><strong>Space Complexity:</strong> O(n) for the new list created.</li>
+  </ul>
+</div>
+
+<div class="wp_blog_code-tabs-container">
+  <div class="wp_blog_code-tabs-header">
+    <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+    <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+    <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+    <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+    <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    <button class="wp_blog_code-tab-button" data-lang="csharp">C#</button>
+  </div>
+
+  <!-- JavaScript -->
+  <div class="wp_blog_code-tab-content" data-lang="js">
+    <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">addTwoNumbers</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">l1<span class="token punctuation">,</span> l2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> dummy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> curr <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> carry <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">||</span> l2 <span class="token operator">||</span> carry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>l1<span class="token operator">?.</span>val <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>l2<span class="token operator">?.</span>val <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> carry<span class="token punctuation">;</span>
+        carry <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>sum <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        curr<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span>sum <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        curr <span class="token operator">=</span> curr<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        l1 <span class="token operator">=</span> l1<span class="token operator">?.</span>next<span class="token punctuation">;</span>
+        l2 <span class="token operator">=</span> l2<span class="token operator">?.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> dummy<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    </code></pre>
+  </div>
+
+  <!-- C -->
+  <div class="wp_blog_code-tab-content" data-lang="c">
+    <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token keyword">struct</span> <span class="token class-name">ListNode</span><span class="token operator">*</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">ListNode</span><span class="token operator">*</span> l1<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">ListNode</span><span class="token operator">*</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">ListNode</span> dummy <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">ListNode</span><span class="token operator">*</span> curr <span class="token operator">=</span> <span class="token operator">&amp;</span>dummy<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> carry <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">||</span> l2 <span class="token operator">||</span> carry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> carry <span class="token operator">+</span> <span class="token punctuation">(</span>l1 <span class="token operator">?</span> l1<span class="token operator">-&gt;</span>val <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>l2 <span class="token operator">?</span> l2<span class="token operator">-&gt;</span>val <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        carry <span class="token operator">=</span> sum <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        curr<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">ListNode</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        curr <span class="token operator">=</span> curr<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        curr<span class="token operator">-&gt;</span>val <span class="token operator">=</span> sum <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        curr<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token punctuation">)</span> l1 <span class="token operator">=</span> l1<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>l2<span class="token punctuation">)</span> l2 <span class="token operator">=</span> l2<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> dummy<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    </code></pre>
+  </div>
+
+  <!-- C++ -->
+  <div class="wp_blog_code-tab-content active" data-lang="cpp">
+    <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> l1<span class="token punctuation">,</span> ListNode<span class="token operator">*</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ListNode<span class="token operator">*</span> dummy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> curr <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> carry <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">||</span> l2 <span class="token operator">||</span> carry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> sum <span class="token operator">=</span> carry<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l1<span class="token operator">-&gt;</span>val<span class="token punctuation">;</span> l1 <span class="token operator">=</span> l1<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l2<span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l2<span class="token operator">-&gt;</span>val<span class="token punctuation">;</span> l2 <span class="token operator">=</span> l2<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            carry <span class="token operator">=</span> sum <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            curr<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span>sum <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            curr <span class="token operator">=</span> curr<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> dummy<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    </code></pre>
+  </div>
+
+  <!-- Java -->
+  <div class="wp_blog_code-tab-content" data-lang="java">
+    <pre class="language-java" tabindex="0"><code class="language-java">
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token class-name">ListNode</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span><span class="token class-name">ListNode</span> l1<span class="token punctuation">,</span> <span class="token class-name">ListNode</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ListNode</span> dummy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ListNode</span> curr <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> carry <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">||</span> l2 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">||</span> carry <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> sum <span class="token operator">=</span> carry<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l1 <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l1<span class="token punctuation">.</span>val<span class="token punctuation">;</span> l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l2 <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">;</span> l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            carry <span class="token operator">=</span> sum <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            curr<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span>sum <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            curr <span class="token operator">=</span> curr<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> dummy<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+    </code></pre>
+  </div>
+
+  <!-- Python -->
+  <div class="wp_blog_code-tab-content" data-lang="py">
+    <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dummy <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        curr <span class="token operator">=</span> dummy
+        carry <span class="token operator">=</span> <span class="token number">0</span>
+
+        <span class="token keyword">while</span> l1 <span class="token keyword">or</span> l2 <span class="token keyword">or</span> carry<span class="token punctuation">:</span>
+            <span class="token builtin">sum</span> <span class="token operator">=</span> carry
+            <span class="token keyword">if</span> l1<span class="token punctuation">:</span>
+                <span class="token builtin">sum</span> <span class="token operator">+=</span> l1<span class="token punctuation">.</span>val
+                l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span><span class="token builtin">next</span>
+            <span class="token keyword">if</span> l2<span class="token punctuation">:</span>
+                <span class="token builtin">sum</span> <span class="token operator">+=</span> l2<span class="token punctuation">.</span>val
+                l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span><span class="token builtin">next</span>
+            carry <span class="token operator">=</span> <span class="token builtin">sum</span> <span class="token operator">//</span> <span class="token number">10</span>
+            curr<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token builtin">sum</span> <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span>
+            curr <span class="token operator">=</span> curr<span class="token punctuation">.</span><span class="token builtin">next</span>
+
+        <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span>
+    </code></pre>
+  </div>
+
+  <!-- C# -->
+  <div class="wp_blog_code-tab-content" data-lang="csharp">
+    <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">ListNode</span> <span class="token function">AddTwoNumbers</span><span class="token punctuation">(</span><span class="token class-name">ListNode</span> l1<span class="token punctuation">,</span> <span class="token class-name">ListNode</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ListNode</span> dummy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ListNode</span> curr <span class="token operator">=</span> dummy<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> carry <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">||</span> l2 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">||</span> carry <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">int</span></span> sum <span class="token operator">=</span> carry<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l1 <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l1<span class="token punctuation">.</span>val<span class="token punctuation">;</span> l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l2 <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+=</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">;</span> l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            carry <span class="token operator">=</span> sum <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            curr<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ListNode</span><span class="token punctuation">(</span>sum <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            curr <span class="token operator">=</span> curr<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> dummy<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+    </code></pre>
+  </div>
+   <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.wp_blog_code-tab-button');
+    const contents = document.querySelectorAll('.wp_blog_code-tab-content');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</div></div></div>

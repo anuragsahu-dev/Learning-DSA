@@ -1,0 +1,233 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Introduction to Linked List</h1><div class="prose max-w-none">
+<!-- PrismJS for Syntax Highlighting -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_main-heading {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #E58C32;
+    margin-top: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .wp_blog_explanation,
+  .wp_blog_code-tabs-container {
+    max-width: 940px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #f9fafb;
+  }
+  
+  .wp_blog_explanation h2 {
+    font-size: 1.4rem;
+    color: #E58C32;
+    margin-bottom: 0.75rem;
+  }
+  
+  .wp_blog_explanation p,
+  .wp_blog_explanation li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0.5rem 0;
+    color: #1f2937;
+  }
+  
+  .wp_blog_explanation code {
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .wp_blog_explanation img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 1rem;
+  }
+  
+  /* Tabs */
+  .wp_blog_code-tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .wp_blog_code-tab-button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #E58C32;
+    color: #E58C32;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .wp_blog_code-tab-button.active {
+    background: #E58C32;
+    color: white;
+  }
+  
+  /* Code Panel */
+  .wp_blog_code-tab-content {
+    display: none;
+    background: #111827;
+    border-radius: 12px;
+  }
+  
+  .wp_blog_code-tab-content.active {
+    display: block;
+  }
+  
+  .wp_blog_code-tab-content pre {
+    margin: 0;
+    padding: 1.5rem;
+    font-size: 1rem;
+    overflow-x: auto;
+    color: #f3f4f6;
+    background: #111827;
+    border-radius: 12px;
+  }
+
+  .wp_blog_explanation table th,
+.wp_blog_explanation table td {
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: top;
+  background-color: #ffffff; /* Explicit white for better visibility */
+  color: #1f2937; /* dark text for readability */
+}
+
+.wp_blog_explanation table th {
+  background-color: #fff7ed; /* Light orange background */
+  color: #b45309; /* Slightly darker orange text */
+  font-weight: 600;
+}
+
+  
+  </style>
+   <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+  <h2>Linked List</h2>
+  <p>
+    A Linked List is a linear data structure in which elements (called nodes) are connected using pointers. Each node contains:
+    </p><ul>
+      <li>A <strong>value</strong> (the actual data)</li>
+      <li>A <strong>reference</strong> (or pointer) to the next node (and optionally to the previous node in doubly linked lists)</li>
+    </ul>
+  <p></p>
+
+  <h2>Types of Linked Lists:</h2>
+
+  <h3>1. Singly Linked List</h3>
+  <ul>
+    <li><strong>value</strong>: the data part</li>
+    <li><strong>next</strong>: a pointer/reference to the next node</li>
+    <li>It moves only in one direction (forward)</li>
+    <li><strong>Structure:</strong> [value | next] -&gt; [value | next] -&gt; [value | null]</li>
+  </ul>
+
+  <h3>2. Doubly Linked List</h3>
+  <ul>
+    <li><strong>value</strong>: the data</li>
+    <li><strong>next</strong>: pointer to the next node</li>
+    <li><strong>prev</strong>: pointer to the previous node</li>
+    <li>Allows bidirectional traversal</li>
+    <li><strong>Structure:</strong> null &lt;- [prev | value | next] &lt;-&gt; [prev | value | next] -&gt; null</li>
+  </ul>
+
+  <h2>Key Terminologies:</h2>
+  <ul>
+    <li><strong>Head:</strong> The first node of a linked list. It marks the entry point and points to the next node.</li>
+    <li><strong>Tail:</strong> The last node of a linked list. It points to null because there’s no node after it.</li>
+    <li><strong>Linked List Representation:</strong> It is typically represented using its head node.</li>
+  </ul>
+
+  <h2>Array vs Linked List — Comparison Table:</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Array</th>
+        <th>Linked List</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Type</strong></td>
+        <td>Linear data structure where elements are arranged in a sequence using indexes.</td>
+        <td>Linear data structure where each element (node) points to the next, forming a chain.</td>
+      </tr>
+      <tr>
+        <td><strong>Memory Layout</strong></td>
+        <td>Elements are stored in a contiguous (adjacent) block of memory.</td>
+        <td>Each node is stored separately and connected via pointers, allowing scattered memory locations.</td>
+      </tr>
+      <tr>
+        <td><strong>Size</strong></td>
+        <td>Size must be known or defined initially. Resizing is expensive if needed later.</td>
+        <td>Size is dynamic. Nodes can be added or removed without knowing the size in advance.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Stored</strong></td>
+        <td>Only values are stored (e.g., integers, strings, etc.)</td>
+        <td>Each node stores a value along with one or more pointers (to next and/or previous nodes).</td>
+      </tr>
+      <tr>
+        <td><strong>Access Time (Indexing)</strong></td>
+        <td>Direct access using index (e.g., <code>arr[3]</code>) is fast with time complexity O(1).</td>
+        <td>Sequential access only. To get a value, you must start at the head and traverse node by node. Time complexity O(n).</td>
+      </tr>
+      <tr>
+        <td><strong>Insertion/Deletion</strong></td>
+        <td>Inserting or deleting in the middle requires shifting elements. Can be time-consuming.</td>
+        <td>Insertion and deletion are faster, especially at the beginning or end, as it only involves pointer changes.</td>
+      </tr>
+      <tr>
+        <td><strong>Memory Efficiency</strong></td>
+        <td>Efficient memory usage as no extra space is needed for pointers.</td>
+        <td>Extra memory is used to store pointers (next/prev), making it less memory efficient.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Use Cases: When to Use What?</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Use Case</th>
+        <th>Prefer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Access elements by index fast</strong></td>
+        <td><strong>Array</strong> – Arrays provide direct access to elements using an index, making it very fast (O(1)). Ideal when random access is frequent.</td>
+      </tr>
+      <tr>
+        <td><strong>Frequent insertions/deletions at head or tail</strong></td>
+        <td><strong>Linked List</strong> – Inserting or removing nodes at the beginning or end is efficient in linked lists since you just change a few pointers (O(1)).</td>
+      </tr>
+      <tr>
+        <td><strong>Static-sized data with memory-efficient storage</strong></td>
+        <td><strong>Array</strong> – Arrays are more memory-efficient as they don’t use extra space for pointers. Best when the number of elements is fixed or predictable.</td>
+      </tr>
+      <tr>
+        <td><strong>Unknown size or avoid resizing overhead</strong></td>
+        <td><strong>Linked List</strong> – Since linked lists grow as needed, they are a better choice when the size of the data is not known upfront or changes frequently.</td>
+      </tr>
+      <tr>
+        <td><strong>Do a lot of traversal or manipulation</strong></td>
+        <td><strong>Linked List</strong> – When you need to move around, insert or remove nodes repeatedly, linked lists offer better flexibility for such operations.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div></div></div>

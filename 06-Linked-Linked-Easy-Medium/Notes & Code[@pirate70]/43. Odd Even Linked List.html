@@ -1,0 +1,280 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Odd Even Linked List</h1><div class="prose max-w-none">
+<!-- PrismJS for Syntax Highlighting -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_main-heading {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #E58C32;
+    margin-top: 2.5rem;
+    font-weight: bold;
+  }
+
+  .wp_blog_explanation,
+  .wp_blog_code-tabs-container {
+    max-width: 940px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #f9fafb;
+  }
+
+  .wp_blog_explanation h2 {
+    font-size: 1.4rem;
+    color: #E58C32;
+    margin-bottom: 0.75rem;
+  }
+
+  .wp_blog_explanation p,
+  .wp_blog_explanation li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0.5rem 0;
+    color: #1f2937;
+  }
+
+  .wp_blog_explanation code {
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    font-family: 'Courier New', monospace;
+  }
+
+  .wp_blog_code-tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .wp_blog_code-tab-button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #E58C32;
+    color: #E58C32;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: #E58C32;
+    color: white;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none;
+    background: #111827;
+    border-radius: 12px;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0;
+    padding: 1.5rem;
+    font-size: 1rem;
+    overflow-x: auto;
+    color: #f3f4f6;
+    background: #111827;
+    border-radius: 12px;
+  }
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+  <h2>Problem Statement:</h2>
+  <p>Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.</p>
+  <p>The first node is considered odd (1st position), the second is even (2nd position), and so on.</p>
+
+  <h2>Example:</h2>
+  <p><strong>Input:</strong> head = [1,2,3,4,5]<br><strong>Output:</strong> [1,3,5,2,4]</p>
+  <p><strong>Input:</strong> head = [2,1,3,5,6,4,7]<br><strong>Output:</strong> [2,3,6,7,1,5,4]</p>
+
+  <h2>Constraints:</h2>
+  <ul>
+    <li>The number of nodes in the linked list is in the range [0, 10<sup>4</sup>].</li>
+    <li>-10<sup>6</sup> ≤ Node.val ≤ 10<sup>6</sup></li>
+  </ul>
+
+  <h2>Approach:</h2>
+  <ul>
+    <li>Maintain two pointers: <code>odd</code> starting from the first node and <code>even</code> from the second.</li>
+    <li>Also store a reference to <code>evenHead</code> so that we can attach it to the end of the odd list later.</li>
+    <li>While traversing, link odd nodes together and even nodes together alternately.</li>
+    <li>Finally, link the last odd node to the head of the even list.</li>
+  </ul>
+
+  <h2>Time and Space Complexity:</h2>
+  <ul>
+    <li><strong>Time Complexity:</strong> O(n) — Each node is visited exactly once.</li>
+    <li><strong>Space Complexity:</strong> O(1) — In-place manipulation with constant extra space.</li>
+  </ul>
+</div>
+
+<div class="wp_blog_code-tabs-container">
+  <div class="wp_blog_code-tabs-header">
+    <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+    <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+    <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+    <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+    <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    <button class="wp_blog_code-tab-button" data-lang="csharp">C#</button>
+  </div>
+
+  <!-- JavaScript -->
+  <div class="wp_blog_code-tab-content" data-lang="js">
+    <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">oddEvenList</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">head</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>head <span class="token operator">||</span> <span class="token operator">!</span>head<span class="token punctuation">.</span>next<span class="token punctuation">)</span> <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> odd <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> even <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> evenHead <span class="token operator">=</span> even<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>even <span class="token operator">&amp;&amp;</span> even<span class="token punctuation">.</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        odd<span class="token punctuation">.</span>next <span class="token operator">=</span> even<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        odd <span class="token operator">=</span> odd<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        even<span class="token punctuation">.</span>next <span class="token operator">=</span> odd<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        even <span class="token operator">=</span> even<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    odd<span class="token punctuation">.</span>next <span class="token operator">=</span> evenHead<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    </code></pre>
+  </div>
+
+  <!-- C -->
+  <div class="wp_blog_code-tab-content" data-lang="c">
+    <pre class="language-c" tabindex="0"><code class="language-c">
+struct ListNode* oddEvenList(struct ListNode* head) {
+    if (!head || !head-&gt;next) return head;
+    struct ListNode *odd = head, *even = head-&gt;next, *evenHead = even;
+
+    while (even &amp;&amp; even-&gt;next) {
+        odd-&gt;next = even-&gt;next;
+        odd = odd-&gt;next;
+        even-&gt;next = odd-&gt;next;
+        even = even-&gt;next;
+    }
+    odd-&gt;next = evenHead;
+    return head;
+}
+    </code></pre>
+  </div>
+
+  <!-- C++ -->
+  <div class="wp_blog_code-tab-content active" data-lang="cpp">
+    <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head-&gt;next) return head;
+        ListNode* odd = head;
+        ListNode* even = head-&gt;next;
+        ListNode* evenHead = even;
+
+        while (even &amp;&amp; even-&gt;next) {
+            odd-&gt;next = even-&gt;next;
+            odd = odd-&gt;next;
+            even-&gt;next = odd-&gt;next;
+            even = even-&gt;next;
+        }
+        odd-&gt;next = evenHead;
+        return head;
+    }
+};
+    </code></pre>
+  </div>
+
+  <!-- Java -->
+  <div class="wp_blog_code-tab-content" data-lang="java">
+    <pre class="language-java" tabindex="0"><code class="language-java">
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode odd = head, even = head.next, evenHead = even;
+
+        while (even != null &amp;&amp; even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+}
+    </code></pre>
+  </div>
+
+  <!-- Python -->
+  <div class="wp_blog_code-tab-content" data-lang="py">
+    <pre class="language-python" tabindex="0"><code class="language-python">
+class Solution(object):
+    def oddEvenList(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        if not head or not head.next:
+            return head
+        odd, even = head, head.next
+        even_head = even
+
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+
+        odd.next = even_head
+        return head
+    </code></pre>
+  </div>
+
+  <!-- C# -->
+  <div class="wp_blog_code-tab-content" data-lang="csharp">
+    <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+public class Solution {
+    public ListNode OddEvenList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode odd = head, even = head.next, evenHead = even;
+
+        while (even != null &amp;&amp; even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+
+        odd.next = evenHead;
+        return head;
+    }
+}
+    </code></pre>
+  </div>
+   <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.wp_blog_code-tab-button');
+    const contents = document.querySelectorAll('.wp_blog_code-tab-content');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</div></div></div>

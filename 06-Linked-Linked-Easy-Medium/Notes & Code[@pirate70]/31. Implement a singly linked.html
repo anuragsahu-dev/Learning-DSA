@@ -1,0 +1,391 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Implement a singly linked list in JS, C, C++, Java, Python, C#</h1><div class="prose max-w-none">
+<p></p>
+
+
+
+<!-- PrismJS for Syntax Highlighting -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+.wp_blog_main-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #E58C32;
+  margin-top: 2.5rem;
+  font-weight: bold;
+}
+
+.wp_blog_explanation,
+.wp_blog_code-tabs-container {
+  max-width: 940px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #f9fafb;
+}
+
+.wp_blog_explanation h2 {
+  font-size: 1.4rem;
+  color: #E58C32;
+  margin-bottom: 0.75rem;
+}
+
+.wp_blog_explanation p,
+.wp_blog_explanation li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+  color: #1f2937;
+}
+
+.wp_blog_explanation code {
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  font-family: 'Courier New', monospace;
+}
+
+.wp_blog_explanation img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+/* Tabs */
+.wp_blog_code-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.wp_blog_code-tab-button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #E58C32;
+  color: #E58C32;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.wp_blog_code-tab-button.active {
+  background: #E58C32;
+  color: white;
+}
+
+/* Code Panel */
+.wp_blog_code-tab-content {
+  display: none;
+  background: #111827;
+  border-radius: 12px;
+}
+
+.wp_blog_code-tab-content.active {
+  display: block;
+}
+
+.wp_blog_code-tab-content pre {
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1rem;
+  overflow-x: auto;
+  color: #f3f4f6;
+  background: #111827;
+  border-radius: 12px;
+}
+
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+  <h2>Problem Statement:</h2>
+  <p>Design and implement a simple singly linked list using basic building blocks like nodes and references (or pointers). The goal is to:
+    </p><ul>
+      <li><strong>Define a node</strong> with a value and a pointer to the next node.</li>
+      <li><strong>Create individual nodes</strong> and link them together to form a list.</li>
+      <li><strong>Traverse the list</strong> from the head and print each node’s value.</li>
+    </ul>
+    <p>This helps you understand how data is stored and accessed sequentially in memory using pointers or references.</p>
+  <p></p>
+  
+  <h2>Example:</h2>
+  <ul>
+    <li><p><strong>Input:</strong> Create 3 nodes with values 10, 20, 30 and link them in order.</p></li>
+    <li><p><strong>Output:</strong> Print values in sequence: 10 20 30</p></li>
+  </ul>
+  
+  <h2>Approach:</h2>
+  <ul>
+    <li>1. Define a <code>Node</code> class or structure with a <code>val</code> and <code>next</code> pointer.</li>
+    <li>2. Create individual nodes (e.g., node1, node2, node3).</li>
+    <li>3. Link the nodes: node1.next → node2, node2.next → node3.</li>
+    <li>4. Set the <code>head</code> of the list to the first node.</li>
+    <li>5. Traverse the list using a loop until the current node becomes <code>null</code> (or <code>None</code>).</li>
+    <li>6. Print the value at each node.</li>
+  </ul>
+  
+  <h2>Explanation:</h2>
+  <ul>
+    <li>Each node stores data and a reference to the next node.</li>
+    <li>The list is connected by linking nodes via the <code>next</code> field.</li>
+    <li>The traversal starts from the head and moves node by node until the end.</li>
+    <li>This basic structure forms the foundation for many advanced data structures like stacks, queues, and graph adjacency lists.</li>
+  </ul>
+  </div>
+  
+
+<div class="wp_blog_code-tabs-container">
+  <div class="wp_blog_code-tabs-header">
+    <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+    <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+    <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+    <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+    <button class="wp_blog_code-tab-button" data-lang="cs">C#</button>
+  </div>
+
+  <div class="wp_blog_code-tab-content" data-lang="js">
+    <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">function</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">MyLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> node1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> node2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> node3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+node1<span class="token punctuation">.</span>next <span class="token operator">=</span> node2<span class="token punctuation">;</span>
+node2<span class="token punctuation">.</span>next <span class="token operator">=</span> node3<span class="token punctuation">;</span>
+
+list<span class="token punctuation">.</span>head <span class="token operator">=</span> node1<span class="token punctuation">;</span>
+list<span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> current <span class="token operator">=</span> list<span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>current<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  current <span class="token operator">=</span> current<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    </code></pre>
+  </div>
+
+  <div class="wp_blog_code-tab-content" data-lang="py">
+    <pre class="language-python" tabindex="0"><code class="language-python">
+<span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> val
+        self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+
+<span class="token comment"># Create and print manually for testing</span>
+node1 <span class="token operator">=</span> Node<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+node2 <span class="token operator">=</span> Node<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+node3 <span class="token operator">=</span> Node<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
+
+node1<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node2
+node2<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node3
+
+current <span class="token operator">=</span> node1
+<span class="token keyword">while</span> current<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    current <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token builtin">next</span>
+    </code></pre>
+</div>
+
+
+
+<div class="wp_blog_code-tab-content" data-lang="java">
+  <pre class="language-java" tabindex="0"><code class="language-java">
+<span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+  <span class="token class-name">Node</span> next<span class="token punctuation">;</span>
+
+  <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token class-name">MyLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">Node</span> node1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Node</span> node2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Node</span> node3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      node1<span class="token punctuation">.</span>next <span class="token operator">=</span> node2<span class="token punctuation">;</span>
+      node2<span class="token punctuation">.</span>next <span class="token operator">=</span> node3<span class="token punctuation">;</span>
+
+      <span class="token class-name">Node</span> current <span class="token operator">=</span> node1<span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          current <span class="token operator">=</span> current<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+  </code></pre>
+</div>
+
+
+
+<div class="wp_blog_code-tab-content active" data-lang="cpp">
+  <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+  Node<span class="token operator">*</span> next<span class="token punctuation">;</span>
+  <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token function">MyLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Node<span class="token operator">*</span> node1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Node<span class="token operator">*</span> node2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Node<span class="token operator">*</span> node3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  node1<span class="token operator">-&gt;</span>next <span class="token operator">=</span> node2<span class="token punctuation">;</span>
+  node2<span class="token operator">-&gt;</span>next <span class="token operator">=</span> node3<span class="token punctuation">;</span>
+
+  Node<span class="token operator">*</span> current <span class="token operator">=</span> node1<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      cout <span class="token operator">&lt;&lt;</span> current<span class="token operator">-&gt;</span>val <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+      current <span class="token operator">=</span> current<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+  </code></pre>
+</div>
+
+
+
+<div class="wp_blog_code-tab-content" data-lang="c">
+  <pre class="language-c" tabindex="0"><code class="language-c">
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> <span class="token class-name">Node</span><span class="token operator">*</span> next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> Node<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span> MyLinkedList<span class="token punctuation">;</span>
+
+MyLinkedList<span class="token operator">*</span> <span class="token function">myLinkedListCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// Extra: Create and print nodes</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Node<span class="token operator">*</span> node1 <span class="token operator">=</span> <span class="token punctuation">(</span>Node<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Node<span class="token operator">*</span> node2 <span class="token operator">=</span> <span class="token punctuation">(</span>Node<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Node<span class="token operator">*</span> node3 <span class="token operator">=</span> <span class="token punctuation">(</span>Node<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  node1<span class="token operator">-&gt;</span>val <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  node2<span class="token operator">-&gt;</span>val <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  node3<span class="token operator">-&gt;</span>val <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+
+  node1<span class="token operator">-&gt;</span>next <span class="token operator">=</span> node2<span class="token punctuation">;</span>
+  node2<span class="token operator">-&gt;</span>next <span class="token operator">=</span> node3<span class="token punctuation">;</span>
+  node3<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+  Node<span class="token operator">*</span> current <span class="token operator">=</span> node1<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> current<span class="token operator">-&gt;</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      current <span class="token operator">=</span> current<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+  </code></pre>
+</div>
+
+
+
+<div class="wp_blog_code-tab-content" data-lang="cs">
+  <pre class="language-csharp" tabindex="0"><code class="language-csharp">
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">int</span></span> val<span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token class-name">Node</span> next<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token function">MyLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Program</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">Node</span> node1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Node</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Node</span> node2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Node</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Node</span> node3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Node</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      node1<span class="token punctuation">.</span>next <span class="token operator">=</span> node2<span class="token punctuation">;</span>
+      node2<span class="token punctuation">.</span>next <span class="token operator">=</span> node3<span class="token punctuation">;</span>
+
+      <span class="token class-name">Node</span> current <span class="token operator">=</span> node1<span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          current <span class="token operator">=</span> current<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+  </code></pre>
+</div>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+</div>
+
+  
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const buttons = document.querySelectorAll('.wp_blog_code-tab-button');
+const contents = document.querySelectorAll('.wp_blog_code-tab-content');
+
+buttons.forEach(button => {
+button.addEventListener('click', () => {
+const lang = button.getAttribute('data-lang');
+buttons.forEach(btn => btn.classList.remove('active'));
+contents.forEach(content => content.classList.remove('active'));
+button.classList.add('active');
+document.querySelector(`.wp_blog_code-tab-content[data-lang="${lang}"]`).classList.add('active');
+});
+});
+});
+</script>
+</div></div></div>
