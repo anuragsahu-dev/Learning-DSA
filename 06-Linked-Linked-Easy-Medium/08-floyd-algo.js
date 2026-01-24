@@ -20,6 +20,15 @@
 // Time Complexity: O(n), where n is the number of nodes in the list.
 // Space Complexity: O(n), in the worst case we store all nodes in a set.
 
-function hasCycle(head){
-    
+function hasCycle(head) {
+    if (!head) return false;
+    let slow = head;
+    let fast = head.next;
+
+    while (slow !== fast) {
+        if (!fast || !fast.next) return false;
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return true;
 }
