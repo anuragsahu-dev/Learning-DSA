@@ -1,0 +1,259 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Reverse String II</h1><div class="prose max-w-none">
+<!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_code-tabs-container {
+    font-family: "Segoe UI", sans-serif !important;
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: white !important;
+  }
+
+  .wp_blog_code-tabs-header {
+    background: #f7f7f7 !important;
+    display: flex !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .wp_blog_code-tab-button {
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background 0.2s !important;
+    color: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: white !important;
+    border-bottom: 3px solid #0073aa !important;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none !important;
+    padding: 20px !important;
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content > pre {
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block !important;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .wp_blog_explanation {
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    font-family: "Segoe UI", sans-serif !important;
+    line-height: 1.6 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .wp_blog_explanation h2 {
+    color: #0073aa !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .wp_blog_explanation code {
+    background: #f1f1f1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+  }
+
+  .wp_blog_explanation h1,
+  .wp_blog_explanation h2,
+  .wp_blog_explanation h3,
+  .wp_blog_explanation h4,
+  .wp_blog_explanation h5,
+  .wp_blog_explanation h6,
+  .wp_blog_explanation p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">    <p>
+      The problem requires reversing the first <code>k</code> characters for every 2<code>k</code> characters in a string. If there are fewer than <code>k</code> characters left, reverse all of them. If there are between <code>k</code> and <code>2k</code> characters left, reverse the first <code>k</code> and leave the rest as is.
+    </p>
+  
+    <h2>Steps</h2>
+    <ul>
+      <li>Convert the string into a character array (if needed).</li>
+      <li>Iterate over the array in steps of <code>2k</code>.</li>
+      <li>At each step, reverse the next <code>k</code> characters if available.</li>
+      <li>Join or return the modified string.</li>
+    </ul>
+  
+    <h2>Dry Run</h2>
+    <p><strong>Input:</strong> <code>s = "abcdefg", k = 2</code></p>
+    <ol>
+      <li>First 2k = 4 chars: reverse first 2 → <code>"bacd"</code></li>
+      <li>Remaining = “efg”: reverse first 2 → <code>"fe"</code>, keep “g”</li>
+      <li><strong>Output:</strong> <code>"bacdfeg"</code></li>
+    </ol>
+  
+    <h2>Time &amp; Space Complexity</h2>
+    <ul>
+      <li><strong>Time Complexity:</strong> O(n), where n = length of the string</li>
+      <li><strong>Space Complexity:</strong> O(1) if in-place, else O(n)</li>
+    </ul>
+  </div>
+  
+  
+  
+  <div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+      <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+      <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+      <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+      <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+      <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+  
+    <!-- JavaScript -->
+    <div class="wp_blog_code-tab-content" data-lang="js">
+      <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+  <span class="token keyword">var</span> <span class="token function-variable function">reverseStr</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">s<span class="token punctuation">,</span> k</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      s <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+  
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>length<span class="token punctuation">;</span> x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> n <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> s<span class="token punctuation">.</span>length <span class="token operator">-</span> x<span class="token punctuation">)</span>
+          <span class="token keyword">let</span> mid <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>n <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> mid<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">let</span> temp <span class="token operator">=</span> s<span class="token punctuation">[</span>x <span class="token operator">+</span> i<span class="token punctuation">]</span>
+              s<span class="token punctuation">[</span>x <span class="token operator">+</span> i<span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span>x <span class="token operator">+</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">]</span>
+              s<span class="token punctuation">[</span>x <span class="token operator">+</span> n <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">]</span> <span class="token operator">=</span> temp
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>    
+      </code></pre>
+    </div>
+  
+    <!-- C++ -->
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+      <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+  <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+  
+  string <span class="token function">reverseStr</span><span class="token punctuation">(</span>string s<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> end <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>i <span class="token operator">+</span> k<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">reverse</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> i<span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> s<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+      </code></pre>
+    </div>
+  
+    <!-- C -->
+    <div class="wp_blog_code-tab-content" data-lang="c">
+      <pre class="language-c" tabindex="0"><code class="language-c">
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+  
+  <span class="token keyword">void</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> <span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">char</span> temp <span class="token operator">=</span> s<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          s<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          s<span class="token punctuation">[</span>end<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+          start<span class="token operator">++</span><span class="token punctuation">;</span>
+          end<span class="token operator">--</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">void</span> <span class="token function">reverseStr</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> end <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> k <span class="token operator">&lt;</span> len<span class="token punctuation">)</span> <span class="token operator">?</span> i <span class="token operator">+</span> k <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">:</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+          <span class="token function">reverse</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+      </code></pre>
+    </div>
+  
+    <!-- Java -->
+    <div class="wp_blog_code-tab-content" data-lang="java">
+      <pre class="language-java" tabindex="0"><code class="language-java">
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+      <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">reverseStr</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">int</span> left <span class="token operator">=</span> i<span class="token punctuation">;</span>
+              <span class="token keyword">int</span> right <span class="token operator">=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>i <span class="token operator">+</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">char</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                  arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                  arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                  left<span class="token operator">++</span><span class="token punctuation">;</span>
+                  right<span class="token operator">--</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+      </code></pre>
+    </div>
+  
+    <!-- Python -->
+    <div class="wp_blog_code-tab-content" data-lang="py">
+      <pre class="language-python" tabindex="0"><code class="language-python">
+  <span class="token keyword">def</span> <span class="token function">reverseStr</span><span class="token punctuation">(</span>s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> k<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+      s <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+      <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">)</span><span class="token punctuation">:</span>
+          s<span class="token punctuation">[</span>i<span class="token punctuation">:</span>i <span class="token operator">+</span> k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">:</span>i <span class="token operator">+</span> k<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+      </code></pre>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+  </div>
+  
+  
+
+<a href="https://leetcode.com/problems/two-sum/description/" target="blank">Solve this problem.</a>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+    const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        contents.forEach((content) => {
+          content.classList.toggle(
+            "active",
+            content.getAttribute("data-lang") === lang
+          );
+        });
+      });
+    });
+  });
+</script>
+
+</div></div></div>

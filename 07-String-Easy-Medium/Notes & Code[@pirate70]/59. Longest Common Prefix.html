@@ -1,0 +1,267 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Longest Common Prefix</h1><div class="prose max-w-none">
+<!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_code-tabs-container {
+    font-family: "Segoe UI", sans-serif !important;
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: white !important;
+  }
+
+  .wp_blog_code-tabs-header {
+    background: #f7f7f7 !important;
+    display: flex !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .wp_blog_code-tab-button {
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background 0.2s !important;
+    color: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: white !important;
+    border-bottom: 3px solid #0073aa !important;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none !important;
+    padding: 20px !important;
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content > pre {
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block !important;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .wp_blog_explanation {
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    font-family: "Segoe UI", sans-serif !important;
+    line-height: 1.6 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .wp_blog_explanation h2 {
+    color: #0073aa !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .wp_blog_explanation code {
+    background: #f1f1f1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+  }
+
+  .wp_blog_explanation h1,
+  .wp_blog_explanation h2,
+  .wp_blog_explanation h3,
+  .wp_blog_explanation h4,
+  .wp_blog_explanation h5,
+  .wp_blog_explanation h6,
+  .wp_blog_explanation p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+</style>
+
+
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+    <p>
+      This problem focuses on finding the longest common prefix string shared among an array of strings. If no common prefix exists, the result should be an empty string.
+    </p>
+  
+    <h2>Steps</h2>
+    <ul>
+      <li>Initialize a pointer <code>x</code> to track character positions in the first string.</li>
+      <li>Iterate through each character of the first string using <code>while</code> loop.</li>
+      <li>For every character at position <code>x</code> in the first string, compare it with the character at the same position in the other strings.</li>
+      <li>If a mismatch is found or if the current index exceeds the length of any string, return the substring from the first string from 0 to <code>x</code>.</li>
+      <li>If the loop completes without any mismatch, return the first string entirely (it is the common prefix).</li>
+    </ul>
+  
+    <h2>Dry Run</h2>
+    <p><strong>Input:</strong> <code>["flower", "flow", "flight"]</code></p>
+    <ol>
+      <li><code>x = 0</code>: Compare ‘f’ with all → match</li>
+      <li><code>x = 1</code>: Compare ‘l’ → match</li>
+      <li><code>x = 2</code>: Compare ‘o’ vs ‘i’ → mismatch</li>
+      <li>Return <code>"fl"</code></li>
+    </ol>
+  
+    <h2>Time &amp; Space Complexity</h2>
+    <ul>
+      <li><strong>Time Complexity:</strong> O(n·m), where <code>n</code> is the number of strings and <code>m</code> is the length of the shortest string</li>
+      <li><strong>Space Complexity:</strong> O(1), as no extra space is used apart from variables</li>
+    </ul>
+  </div>
+  
+  <div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+      <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+      <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+      <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+      <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+      <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+  
+    <!-- JavaScript -->
+    <div class="wp_blog_code-tab-content" data-lang="js">
+      <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+  <span class="token keyword">var</span> <span class="token function-variable function">longestCommonPrefix</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">strs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> ch <span class="token operator">=</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> strs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">!=</span> strs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">||</span> x <span class="token operator">==</span> strs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">return</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+          <span class="token operator">++</span>x<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      </code></pre>
+    </div>
+  
+    <!-- C++ -->
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+      <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+  #include &lt;iostream&gt;
+  #include &lt;vector&gt;
+  using namespace std;
+  
+  string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
+      int x = 0;
+      while (x &lt; strs[0].length()) {
+          char ch = strs[0][x];
+          for (int i = 1; i &lt; strs.size(); i++) {
+              if (x == strs[i].length() || ch != strs[i][x]) {
+                  return strs[0].substr(0, x);
+              }
+          }
+          ++x;
+      }
+      return strs[0];
+  }
+      </code></pre>
+    </div>
+  
+    <!-- C -->
+    <div class="wp_blog_code-tab-content" data-lang="c">
+      <pre class="language-c" tabindex="0"><code class="language-c">
+  #include &lt;stdio.h&gt;
+  #include &lt;string.h&gt;
+  
+  char* longestCommonPrefix(char strs[][100], int strsSize) {
+      static char prefix[100];
+      int x = 0;
+      while (1) {
+          char ch = strs[0][x];
+          for (int i = 1; i &lt; strsSize; i++) {
+              if (x &gt;= strlen(strs[i]) || strs[i][x] != ch) {
+                  prefix[x] = '\0';
+                  return prefix;
+              }
+          }
+          prefix[x] = ch;
+          x++;
+      }
+  }
+      </code></pre>
+    </div>
+  
+    <!-- Java -->
+    <div class="wp_blog_code-tab-content" data-lang="java">
+      <pre class="language-java" tabindex="0"><code class="language-java">
+  public class Solution {
+      public String longestCommonPrefix(String[] strs) {
+          int x = 0;
+          while (x &lt; strs[0].length()) {
+              char ch = strs[0].charAt(x);
+              for (int i = 1; i &lt; strs.length; i++) {
+                  if (x == strs[i].length() || ch != strs[i].charAt(x)) {
+                      return strs[0].substring(0, x);
+                  }
+              }
+              x++;
+          }
+          return strs[0];
+      }
+  }
+      </code></pre>
+    </div>
+  
+    <!-- Python -->
+    <div class="wp_blog_code-tab-content" data-lang="py">
+      <pre class="language-python" tabindex="0"><code class="language-python">
+  def longestCommonPrefix(strs):
+      x = 0
+      while x &lt; len(strs[0]):
+          ch = strs[0][x]
+          for i in range(1, len(strs)):
+              if x == len(strs[i]) or strs[i][x] != ch:
+                  return strs[0][:x]
+          x += 1
+      return strs[0]
+      </code></pre>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+  </div>
+  
+
+
+
+<a href="https://leetcode.com/problems/two-sum/description/" target="blank">Solve this problem.</a>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+    const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        contents.forEach((content) => {
+          content.classList.toggle(
+            "active",
+            content.getAttribute("data-lang") === lang
+          );
+        });
+      });
+    });
+  });
+</script>
+
+</div></div></div>

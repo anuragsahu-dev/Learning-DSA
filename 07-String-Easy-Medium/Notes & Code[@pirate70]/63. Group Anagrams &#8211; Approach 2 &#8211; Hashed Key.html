@@ -1,0 +1,281 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Group Anagrams &amp;#8211; Approach 2 &amp;#8211; Hashed Key</h1><div class="prose max-w-none">
+<!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_code-tabs-container {
+    font-family: "Segoe UI", sans-serif !important;
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: white !important;
+  }
+
+  .wp_blog_code-tabs-header {
+    background: #f7f7f7 !important;
+    display: flex !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .wp_blog_code-tab-button {
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background 0.2s !important;
+    color: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: white !important;
+    border-bottom: 3px solid #0073aa !important;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none !important;
+    padding: 20px !important;
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content > pre {
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block !important;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .wp_blog_explanation {
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    font-family: "Segoe UI", sans-serif !important;
+    line-height: 1.6 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .wp_blog_explanation h2 {
+    color: #0073aa !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .wp_blog_explanation code {
+    background: #f1f1f1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+  }
+
+  .wp_blog_explanation h1,
+  .wp_blog_explanation h2,
+  .wp_blog_explanation h3,
+  .wp_blog_explanation h4,
+  .wp_blog_explanation h5,
+  .wp_blog_explanation h6,
+  .wp_blog_explanation p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+</style>
+
+
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+    <p>
+      Instead of sorting the string, this approach creates a unique hash key for each string based on the frequency of characters. This improves performance by avoiding costly sort operations for every string.
+    </p>
+  
+    <h2>Steps</h2>
+    <ul>
+      <li>Initialize a hashmap to store grouped anagrams.</li>
+      <li>For each word in the input array:</li>
+      <ul>
+        <li>Create an array of size 26 to count frequency of each letter.</li>
+        <li>Convert that frequency array into a unique string key (like “#1#0#2…”).</li>
+      </ul>
+      <li>Use this string as a hash key to group anagrams.</li>
+      <li>Return all the grouped values.</li>
+    </ul>
+  
+    <h2>Dry Run</h2>
+    <p><strong>Input:</strong> <code>["eat", "tea", "tan", "ate", "nat", "bat"]</code></p>
+    <ol>
+      <li><code>"eat"</code> → freq = <code>[1,0,0,...,1,1,...]</code> → key = “#1#0#0#0…#1#1”</li>
+      <li>All anagrams like “tea” and “ate” will have the same key.</li>
+      <li>Final groups: <code>[["eat","tea","ate"],["tan","nat"],["bat"]]</code></li>
+    </ol>
+  
+    <h2>Time &amp; Space Complexity</h2>
+    <ul>
+      <li><strong>Time Complexity:</strong> O(n·k), where n = number of strings, k = average length of strings (no sorting)</li>
+      <li><strong>Space Complexity:</strong> O(n·k), for storing frequency map and result</li>
+    </ul>
+  </div>
+  
+  <div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+      <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+      <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+      <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+      <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+  
+    <!-- JavaScript -->
+    <div class="wp_blog_code-tab-content" data-lang="js">
+      <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+  <span class="token keyword">var</span> <span class="token function-variable function">groupAnagrams</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">strs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> map <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> strs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> freqArr <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">let</span> s <span class="token operator">=</span> strs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">let</span> index <span class="token operator">=</span> s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              freqArr<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+  
+          <span class="token keyword">let</span> key <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> <span class="token number">26</span><span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              key <span class="token operator">+=</span> <span class="token string">"#"</span> <span class="token operator">+</span> freqArr<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+  
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>map<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              map<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+  
+      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      </code></pre>
+    </div>
+  
+    <!-- C++ -->
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+      <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+  <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+  
+  vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;&gt;</span> <span class="token function">groupAnagrams</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span><span class="token operator">&amp;</span> strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;&gt;</span> map<span class="token punctuation">;</span>
+  
+      <span class="token keyword">for</span> <span class="token punctuation">(</span>string s <span class="token operator">:</span> strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">freq</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              freq<span class="token punctuation">[</span>c <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+  
+          string key<span class="token punctuation">;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> count <span class="token operator">:</span> freq<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              key <span class="token operator">+=</span> <span class="token string">"#"</span> <span class="token operator">+</span> <span class="token function">to_string</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+  
+          map<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  
+      vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;&gt;</span> result<span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token operator">:</span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  
+      <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+      </code></pre>
+    </div>
+  
+    <!-- Java -->
+    <div class="wp_blog_code-tab-content" data-lang="java">
+      <pre class="language-java" tabindex="0"><code class="language-java">
+  <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+      <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">groupAnagrams</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+          <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> s <span class="token operator">:</span> strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> freq <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+              <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c <span class="token operator">:</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  freq<span class="token punctuation">[</span>c <span class="token operator">-</span> <span class="token char">'a'</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+  
+              <span class="token class-name">StringBuilder</span> key <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> count <span class="token operator">:</span> freq<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  key<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+  
+              map<span class="token punctuation">.</span><span class="token function">computeIfAbsent</span><span class="token punctuation">(</span>key<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> k <span class="token operator">-&gt;</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+  
+          <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+      </code></pre>
+    </div>
+  
+    <!-- Python -->
+    <div class="wp_blog_code-tab-content" data-lang="py">
+      <pre class="language-python" tabindex="0"><code class="language-python">
+  <span class="token keyword">from</span> collections <span class="token keyword">import</span> defaultdict
+  
+  <span class="token keyword">def</span> <span class="token function">groupAnagrams</span><span class="token punctuation">(</span>strs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      anagram_map <span class="token operator">=</span> defaultdict<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
+  
+      <span class="token keyword">for</span> s <span class="token keyword">in</span> strs<span class="token punctuation">:</span>
+          freq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">26</span>
+          <span class="token keyword">for</span> char <span class="token keyword">in</span> s<span class="token punctuation">:</span>
+              freq<span class="token punctuation">[</span><span class="token builtin">ord</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+          key <span class="token operator">=</span> <span class="token builtin">tuple</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span>
+          anagram_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+  
+      <span class="token keyword">return</span> <span class="token builtin">list</span><span class="token punctuation">(</span>anagram_map<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      </code></pre>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+  </div>
+  
+
+
+<a href="https://leetcode.com/problems/two-sum/description/" target="blank">Solve this problem.</a>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+    const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        contents.forEach((content) => {
+          content.classList.toggle(
+            "active",
+            content.getAttribute("data-lang") === lang
+          );
+        });
+      });
+    });
+  });
+</script>
+
+</div></div></div>

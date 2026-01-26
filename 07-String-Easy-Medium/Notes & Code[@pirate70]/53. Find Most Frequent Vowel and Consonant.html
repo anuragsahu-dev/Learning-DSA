@@ -1,0 +1,299 @@
+<div class="mt-0 md:mt-4 mb-4 w-full md:w-[98%] mx-auto"><div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-3xl font-bold mb-4">Find Most Frequent Vowel and Consonant</h1><div class="prose max-w-none">
+<!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<style>
+  .wp_blog_code-tabs-container {
+    font-family: "Segoe UI", sans-serif !important;
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: white !important;
+  }
+
+  .wp_blog_code-tabs-header {
+    background: #f7f7f7 !important;
+    display: flex !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .wp_blog_code-tab-button {
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background 0.2s !important;
+    color: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-button.active {
+    background: white !important;
+    border-bottom: 3px solid #0073aa !important;
+  }
+
+  .wp_blog_code-tab-content {
+    display: none !important;
+    padding: 20px !important;
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content > pre {
+    background: #242b33 !important;
+  }
+
+  .wp_blog_code-tab-content.active {
+    display: block !important;
+  }
+
+  .wp_blog_code-tab-content pre {
+    margin: 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .wp_blog_explanation {
+    max-width: 900px !important;
+    margin: 2rem auto !important;
+    font-family: "Segoe UI", sans-serif !important;
+    line-height: 1.6 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .wp_blog_explanation h2 {
+    color: #0073aa !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .wp_blog_explanation code {
+    background: #f1f1f1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+  }
+
+  .wp_blog_explanation h1,
+  .wp_blog_explanation h2,
+  .wp_blog_explanation h3,
+  .wp_blog_explanation h4,
+  .wp_blog_explanation h5,
+  .wp_blog_explanation h6,
+  .wp_blog_explanation p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+</style>
+ <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+<div class="wp_blog_explanation">
+    <p>
+      This problem requires finding the most frequently occurring vowel and consonant characters in a string, and returning the sum of their frequencies.
+    </p>
+  
+    <h2>Steps</h2>
+    <ul>
+      <li>Initialize a character frequency map using a loop.</li>
+      <li>Define a list of vowels: <code>['a', 'e', 'i', 'o', 'u']</code>.</li>
+      <li>Traverse the string and count how often each character appears.</li>
+      <li>Track the highest frequency vowel and the highest frequency consonant.</li>
+      <li>Return the sum of those two highest values.</li>
+    </ul>
+  
+    <h2>Dry Run</h2>
+    <p><strong>Input:</strong> <code>s = "successes"</code></p>
+    <ol>
+      <li>Frequency map: { s: 4, u: 1, c: 2, e: 2 }</li>
+      <li>Vowels: u(1), e(2) → <code>maxVowels = 2</code></li>
+      <li>Consonants: s(4), c(2) → <code>maxConsonant = 4</code></li>
+      <li><strong>Output:</strong> <code>2 + 4 = 6</code></li>
+    </ol>
+  
+    <h2>Time &amp; Space Complexity</h2>
+    <ul>
+      <li><strong>Time Complexity:</strong> O(n), where n = length of the string</li>
+      <li><strong>Space Complexity:</strong> O(k), where k = number of unique characters (at most 26 lowercase letters)</li>
+    </ul>
+  </div>
+  
+
+  <div class="wp_blog_code-tabs-container">
+    <div class="wp_blog_code-tabs-header">
+      <button class="wp_blog_code-tab-button" data-lang="js">JavaScript</button>
+      <button class="wp_blog_code-tab-button active" data-lang="cpp">C++</button>
+      <button class="wp_blog_code-tab-button" data-lang="c">C</button>
+      <button class="wp_blog_code-tab-button" data-lang="java">Java</button>
+      <button class="wp_blog_code-tab-button" data-lang="py">Python</button>
+    </div>
+  
+    <!-- JavaScript -->
+    <div class="wp_blog_code-tab-content" data-lang="js">
+      <pre class="language-javascript" tabindex="0"><code class="language-javascript">
+<span class="token keyword">var</span> <span class="token function-variable function">maxFreqSum</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> map <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token operator">++</span>map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">let</span> vowels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">,</span> <span class="token string">'o'</span><span class="token punctuation">,</span> <span class="token string">'u'</span><span class="token punctuation">]</span>
+    <span class="token keyword">let</span> maxVowels <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">let</span> maxConsonant <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>vowels<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> maxVowels<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                maxVowels <span class="token operator">=</span> map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> maxConsonant<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                maxConsonant <span class="token operator">=</span> map<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> maxConsonant <span class="token operator">+</span> maxVowels
+<span class="token punctuation">}</span><span class="token punctuation">;</span>        
+      </code></pre>
+    </div>
+  
+    <!-- C++ -->
+    <div class="wp_blog_code-tab-content active" data-lang="cpp">
+      <pre class="language-cpp" tabindex="0"><code class="language-cpp">
+  #include &lt;iostream&gt;
+  #include &lt;string&gt;
+  #include &lt;unordered_map&gt;
+  using namespace std;
+  
+  int maxFreqSum(string s) {
+      unordered_map &lt;char,int&gt; freq;
+      for (char c : s) freq[c]++;
+  
+      string vowels = "aeiou";
+      int maxV = 0, maxC = 0;
+  
+      for (auto &amp;p : freq) {
+          char ch = p.first;
+          int cnt = p.second;
+          if (vowels.find(ch) != string::npos) {
+              maxV = max(maxV, cnt);
+          } else {
+              maxC = max(maxC, cnt);
+          }
+      }
+  
+      return maxV + maxC;
+  }
+      </code></pre>
+    </div>
+  
+    <!-- C -->
+    <div class="wp_blog_code-tab-content" data-lang="c">
+      <pre class="language-c" tabindex="0"><code class="language-c">
+  #include &lt;stdio.h&gt;
+  #include &lt;string.h&gt;
+  #include &lt;ctype.h&gt;
+  
+  int maxFreqSum(char* s) {
+      int freq[256] = {0};
+      for (int i = 0; s[i]; i++) freq[(unsigned char)s[i]]++;
+  
+      char* vowels = "aeiou";
+      int maxV = 0, maxC = 0;
+  
+      for (int i = 0; s[i]; i++) {
+          unsigned char ch = s[i];
+          if (strchr(vowels, ch)) {
+              if (freq[ch] &gt; maxV) maxV = freq[ch];
+          } else if (isalpha(ch)) {
+              if (freq[ch] &gt; maxC) maxC = freq[ch];
+          }
+      }
+  
+      return maxV + maxC;
+  }
+      </code></pre>
+    </div>
+  
+    <!-- Java -->
+    <div class="wp_blog_code-tab-content" data-lang="java">
+      <pre class="language-java" tabindex="0"><code class="language-java">
+  import java.util.*;
+  
+  public class Solution {
+      public int maxFreqSum(String s) {
+          Map&lt;Character,Integer&gt; freq = new HashMap&lt;&gt;();
+          for (char c : s.toCharArray())
+              freq.put(c, freq.getOrDefault(c,0) + 1);
+  
+          Set&lt;Character&gt; vowels = Set.of('a','e','i','o','u');
+          int maxV = 0, maxC = 0;
+  
+          for (var entry : freq.entrySet()) {
+              char ch = entry.getKey();
+              int cnt = entry.getValue();
+              if (vowels.contains(ch)) {
+                  maxV = Math.max(maxV, cnt);
+              } else {
+                  maxC = Math.max(maxC, cnt);
+              }
+          }
+  
+          return maxV + maxC;
+      }
+  }
+      </code></pre>
+    </div>
+  
+    <!-- Python -->
+    <div class="wp_blog_code-tab-content" data-lang="py">
+      <pre class="language-python" tabindex="0"><code class="language-python">
+  def maxFreqSum(s):
+      from collections import Counter
+      freq = Counter(s)
+      vowels = set('aeiou')
+  
+      maxV = max((freq[ch] for ch in freq if ch in vowels), default=0)
+      maxC = max((freq[ch] for ch in freq if ch not in vowels), default=0)
+  
+      return maxV + maxC
+      </code></pre>
+    </div>
+     <h1>Downloaded by: <a href="https://t.me/Pirate70">Pirate70(click here)</a></h1>
+  </div>
+  
+  
+
+<a href="https://leetcode.com/problems/two-sum/description/" target="blank">Solve this problem.</a>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".wp_blog_code-tab-button");
+    const contents = document.querySelectorAll(".wp_blog_code-tab-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        contents.forEach((content) => {
+          content.classList.toggle(
+            "active",
+            content.getAttribute("data-lang") === lang
+          );
+        });
+      });
+    });
+  });
+</script>
+
+</div></div></div>
