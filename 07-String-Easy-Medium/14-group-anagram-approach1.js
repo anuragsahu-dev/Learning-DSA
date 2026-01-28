@@ -17,6 +17,39 @@
 // Time Complexity: O(n·k), where n = number of strings, k = average length of strings (no sorting)
 // Space Complexity: O(n·k), for storing frequency map and result
 
-function groupAnagrams(strs){
-    
+// approach 1 sorted key approach
+
+// function groupAnagrams(strs) {
+//     const sortedArray = strs.map((s) => s.split("").sort().join(""));
+
+//     const map = {};
+
+//     for (let i = 0; i < sortedArray.length; i++) {
+//         if (map[sortedArray[i]]) {
+//             map[sortedArray[i]].push(strs[i]);
+//         } else {
+//             map[sortedArray[i]] = [strs[i]];
+//         }
+//     }
+
+//     return Object.values(map);
+// }
+
+// above one is my code 
+
+// this is akshay saini code
+
+function groupAnagrams(strs) {
+    let map = {};
+
+    for (let i = 0; i < strs.length; i++) {
+        let sortedStr = strs[i].split("").sort().join("");
+        if (!map[sortedStr]) {
+            map[sortedStr] = [strs[i]];
+        } else {
+            map[sortedStr].push(strs[i]);
+        }
+    }
+
+    return Object.values(map);
 }

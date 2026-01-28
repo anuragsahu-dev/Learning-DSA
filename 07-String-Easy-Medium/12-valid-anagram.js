@@ -75,3 +75,16 @@ console.log("Hashing approach:", hashingIsAnagram("anagram", "nagaram")); // tru
 
 console.log("Sorting approach:", isAnagram("rat", "car")); // false
 console.log("Hashing approach:", hashingIsAnagram("rat", "car")); // false
+
+// notes 
+
+// const freq = (freqTable[s[i]] || 0) + 1;
+// freqTable[s[i]] = freq;
+
+// this above is exactly same as this
+
+// if(freqTable[s[i]]){
+//     freqTable[s[i]]++;
+// }else{
+//     freqTable[s[i]] = 0;
+// }
